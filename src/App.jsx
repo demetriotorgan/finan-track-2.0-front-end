@@ -64,18 +64,7 @@ function App() {
       <div>
       <SucessoAnimado mostrar={mostrarSucesso} />      
       </div>
-      <FormularioRegistro        
-        valor={valor}
-        setValor={setValor}
-        tipo={tipo}
-        setTipo={setTipo}
-        gasto={gasto}
-        setGasto={setGasto}
-        loading={loading}
-        handleSubmit={handleSubmit}
-        categoria={categoria}
-        setCategoria={setCategoria}
-        />  
+      <FormularioRegistro />  
 
       <ResumoGeral
         diasRegistrados={diasRegistrados}

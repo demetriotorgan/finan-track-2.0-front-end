@@ -1,46 +1,68 @@
+import React, { useState } from 'react'
+import '../Styles/FormularioRegistro.css'
 
-function FormularioRegistro({
-valor,
-setValor,
-tipo,
-setTipo,
-gasto,
-setGasto,
-loading,
-handleSubmit,
-categoria,
-setCategoria
-}){  
-    return(
-<>
-{loading && (
-        <div className='loading-overlay'>
-          <div className='loading-spinner'></div>
-          <p>Salvando registro...</p>
-        </div>
-      )}
+const FormularioRegistro = () => {
+  const dadosInicial = {
+    valor: '',
+    tipo: 'credito',
+    gasto: 'essencial',
+    categoria: 'supermercado'
 
-      <form className='formulario' onSubmit={handleSubmit}>
-        <label htmlFor='valor'>Valor</label>
+  }
+
+  const [dados, setDados] = useState(dadosInicial);
+
+  const handleDados = (e) => {
+    const { name, value } = e.target;
+    setDados({ ...dados, [name]: value });
+  }
+
+  const handleSubmit = () => {
+
+  }
+
+  return (
+    <form className="form-registro" onSubmit={handleSubmit}>
+
+      <label>
+        Valor
         <input
-        type='number'
-        id='valor'        
-        placeholder='Valor gasto (R$)' 
-        value={valor}
-        onChange={(e)=>setValor(e.target.value)}/>
+          type="number"
+          name="valor"
+          placeholder="Valor gasto (R$)"
+          value={dados.valor}
+          onChange={handleDados}
+        />
+      </label>
 
-        <select value={tipo} onChange={(e)=>setTipo(e.target.value)}>
+      <label>
+        Tipo do Pagamento
+        <select
+          value={dados.tipo}
+          onChange={handleDados}>
           <option value="credito">Crédito</option>
           <option value="debito">Débito</option>
+          <option value="pix">Débito</option>
         </select>
+      </label>
 
-        <select value={gasto} onChange={(e)=>setGasto(e.target.value)}>
+      <label>
+        Natureza
+        <select 
+          value={dados.gasto}
+          onChange={handleDados}>
           <option value="essencial">Essencial</option>
           <option value="nao-essencial">Não-Essencial</option>
         </select>
+      </label>
 
-        <label>Categoria</label>
-        <select value={categoria} onChange={(e)=>setCategoria(e.target.value)}>
+      <label>
+        Categoria
+        <select
+          name="categoria"
+          value={dados.categoria}
+          onChange={handleDados}
+        >
           <option value="supermercado">Supermercado</option>
           <option value="bebidas">Bebidas</option>
           <option value="lanche">Lanche</option>
@@ -50,10 +72,12 @@ setCategoria
           <option value="internet">Internet</option>
           <option value="outro">Outros</option>
         </select>
+      </label>
 
-        <button type='submit'>Salvar</button>
-      </form>      
-</>
-    )
+      <button type="submit" className="btn btn-salvar">Salvar</button>
+
+    </form>
+  )
 }
-export default FormularioRegistro;
+
+export default FormularioRegistro

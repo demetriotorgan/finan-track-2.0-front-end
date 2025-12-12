@@ -1,0 +1,64 @@
+/* ===============================
+   FORMULÁRIO DE REGISTRO
+=============================== */
+
+.form-registro {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 10px;
+  padding: 24px;
+  background: var(--cor-secundaria);
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Labels */
+.form-registro label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cor-texto);
+  margin-bottom: -6px;
+}
+
+/* Inputs e Selects (estilo unificado) */
+.form-registro input,
+.form-registro select {
+  width: 100%;
+  padding: 12px 14px;
+
+  border-radius: 10px;
+  border: 2px solid transparent;
+
+  background: var(--cor-primaria);
+  color: var(--cor-texto);
+  font-size: 1rem;
+
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Placeholder elegante */
+.form-registro input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Foco */
+.form-registro input:focus,
+.form-registro select:focus {
+  border-color: var(--cor-terciaria);
+  box-shadow: 0 0 6px rgba(0, 183, 181, 0.6);
+  outline: none;
+}
+
+/* Botão salvar dentro do formulário */
+.form-registro button {
+  margin-top: 12px;
+  width: 100%;
+}
+
+/* Ajustes responsivos */
+@media (min-width: 700px) {
+  .form-registro {
+    max-width: 500px;
+  }
+}
