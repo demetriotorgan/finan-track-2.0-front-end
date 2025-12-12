@@ -1,12 +1,141 @@
-*{
+/* Importação das fontes */
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Reset básico */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+/* Variáveis globais */
 :root {
   --cor-primaria: #005461;
   --cor-secundaria: #018790;
   --cor-terciaria: #00B7B5;
-  --cor-texto:#F4F4F4;
+  --cor-texto: #F4F4F4;
+
+  --fonte-principal: "Google Sans", "Roboto", sans-serif;
 }
 
+/* Configuração geral de layout */
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: var(--fonte-principal);
+  color: var(--cor-texto);
+  background-color: var(--cor-primaria);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove sublinhados e adapta cores dos links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Ajuste padrão para listas */
+ul, ol {
+  list-style: none;
+}
+
+/* Para botões e inputs herdarem a fonte */
+button, input, textarea, select {
+  font-family: inherit;
+}
+
+/* ===========================
+   COMPONENTE: CONTAINER
+=========================== */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
+/* ===========================
+   COMPONENTE: CARD
+=========================== */
+.card {
+  background: var(--cor-secundaria);
+  color: var(--cor-texto);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+}
+
+
+/* ===========================
+   COMPONENTE: BUTTON
+=========================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 26px;
+  font-size: 1rem;
+  font-weight: 600;
+
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+
+  color: var(--cor-texto);
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+
+/* ===========================
+   BOTÃO SALVAR (verde)
+=========================== */
+.btn-salvar {
+  background: #00b36b; /* verde elegante */
+}
+
+.btn-salvar:hover {
+  background: #009d5d;
+}
+
+
+/* ===========================
+   BOTÃO EXCLUIR (vermelho)
+=========================== */
+.btn-excluir {
+  background: #d64545;
+}
+
+.btn-excluir:hover {
+  background: #c23d3d;
+}
+
+
+/* ===========================
+   BOTÃO EDITAR (amarelo)
+=========================== */
+.btn-editar {
+  background: #e6b800; /* dourado/amarelo */
+}
+
+.btn-editar:hover {
+  background: #d4a700;
+}
