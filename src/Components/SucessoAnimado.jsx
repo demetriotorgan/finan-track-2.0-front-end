@@ -1,6 +1,5 @@
 // src/components/SucessoAnimado.jsx
 import { motion, AnimatePresence } from "framer-motion";
-import './SucessoAnimado.css';
 import sucessoIcon from '../assets/moedasGif.gif';
 
 export function SucessoAnimado({ mostrar }) {

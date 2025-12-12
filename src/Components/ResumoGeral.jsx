@@ -1,4 +1,4 @@
-import './ResumoGeral.css'
+
 
 const ResumoGeral = ({
   diasRegistrados,

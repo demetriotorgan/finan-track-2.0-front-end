@@ -1,4 +1,3 @@
-import './GraficoCategoriasAgrupadas.css'
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, ResponsiveContainer } from 'recharts';
 

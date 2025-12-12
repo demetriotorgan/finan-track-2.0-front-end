@@ -1,5 +1,5 @@
 import React from 'react';
-import './TotaisPorCategoria.css';
+
 
 export function TotaisPorCategoria({ registros }) {
   const registrosComCategoria = registros.filter(r => r.categoria && r.categoria.trim() !== '');

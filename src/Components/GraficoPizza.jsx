@@ -1,5 +1,5 @@
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
-import './GraficoPizza.css'
+
 
 const cores = ['#2d455eff', '#9af087ff'];
 

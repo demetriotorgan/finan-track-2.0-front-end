@@ -4,7 +4,9 @@
   box-sizing: border-box;
 }
 :root {
-  --cor-primaria: #1e1e2f;    
-  --cor-texto:#bbbbbb;
+  --cor-primaria: #005461;
+  --cor-secundaria: #018790;
+  --cor-terciaria: #00B7B5;
+  --cor-texto:#F4F4F4;
 }
 

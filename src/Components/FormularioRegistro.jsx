@@ -1,4 +1,3 @@
-import './FormularioRegistro.css'
 
 function FormularioRegistro({
 valor,

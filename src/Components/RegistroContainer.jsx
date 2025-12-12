@@ -1,4 +1,3 @@
-import './RegistroContainer.css'; // opcional: se quiser estilizar separado
 
 const RegistroContainer = ({ registros, loadingList, excluirRegistro }) => {
   return (
