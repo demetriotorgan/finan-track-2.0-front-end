@@ -1,39 +1,23 @@
 import React, { useState } from 'react'
 import '../Styles/FormularioRegistro.css'
 import { ArrowBigLeft, Save } from 'lucide-react';
+import api from '../api/api'
+import ModalCarregando from '../Components/ModalCarregando'
+import { useNavigate } from 'react-router-dom';
+import { useSalvarRegistro } from '../Hooks/useSalvarRegistro';
 
-const FormularioRegistro = () => {
-  const dadosInicial = {
-    descricao:'',
-    valor: '',
-    tipo: 'credito',
-    gasto: 'essencial',
-    categoria: 'supermercado'
-
+const FormularioRegistro = () => {  
+  const navigate = useNavigate();  
+   const handleVoltar = () => {
+    navigate('/')
   }
 
-  const [dados, setDados] = useState(dadosInicial);
-
-  const handleDados = (e) => {
-    const { name, value } = e.target;
-    setDados({ ...dados, [name]: value });
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const payload = {
-      descricao: dados.descricao,
-      valor: dados.valor,
-      tipo: dados.tipo,
-      gasto: dados.gasto,
-      categoria: dados.categoria
-    }
-    console.log('Payload: ', payload);
-  }
+  const {dados, salvandoRegistro, handleDados, salvarRegistro} = useSalvarRegistro();
 
   return (
-    <form className="form-registro" onSubmit={handleSubmit}>
+    <>
+    {salvandoRegistro && <ModalCarregando label='Salvando' />}
+    <form className="form-registro" onSubmit={salvarRegistro}>
       <label>
         Descricao
         <input 
@@ -58,17 +42,19 @@ const FormularioRegistro = () => {
       <label>
         Tipo do Pagamento
         <select
+          name='tipo'
           value={dados.tipo}
           onChange={handleDados}>
           <option value="credito">Crédito</option>
           <option value="debito">Débito</option>
-          <option value="pix">Débito</option>
+          <option value="pix">Pix</option>
         </select>
       </label>
 
       <label>
         Gasto
         <select 
+          name='gasto'
           value={dados.gasto}
           onChange={handleDados}>
           <option value="essencial">Essencial</option>
@@ -94,10 +80,20 @@ const FormularioRegistro = () => {
           <option value="outro">Outros</option>
         </select>
       </label>
-
-      <button type="submit" className="btn btn-salvar"><Save /> Salvar</button>
-      <button className='btn btn-editar'><ArrowBigLeft />Voltar</button>
+      <label>
+        Data
+        <input 
+        type='date'
+        name='data'
+        value={dados.data}
+        onChange={handleDados}
+        />
+      </label>
+      <button type="submit" className="btn btn-salvar"><Save /> Salvar</button>      
+      <button type='button' className='btn btn-editar' onClick={handleVoltar}><ArrowBigLeft />Voltar</button>
     </form>
+    
+    </>
   )
 }
 

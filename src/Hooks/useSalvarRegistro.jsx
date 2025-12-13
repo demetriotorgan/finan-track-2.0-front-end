@@ -1,50 +1,68 @@
 // src/hooks/useSalvarRegistro.js
 import { useState } from 'react';
 import somMoeda from '../assets/somMoeda.mp3'
+import api from '../api/api';
+import { isoToDateEdit } from '../utils/time';
 
 const audioMoeda = new Audio(somMoeda);
 audioMoeda.preload = 'auto';
 
 
-export function useSalvarRegistro(fetchRegistros) {
-  const [loading, setLoading] = useState(false);
+export function useSalvarRegistro() {
+  const hojeISO = new Date().toISOString();
 
-  const salvarRegistro = async ({ valor, tipo, gasto, categoria, onSuccess, onSuccessExtra}) => {
-    if (!valor || isNaN(valor) || parseFloat(valor) <= 0) {
-      alert('⚠️ Por favor, insira um valor válido maior que zero.');
-      return;
+  const dadosInicial = {
+    descricao:'',
+    valor: '',
+    tipo: 'credito',
+    gasto: 'essencial',
+    categoria: 'supermercado',
+    data: isoToDateEdit(hojeISO)
+
+  }
+
+  const [dados, setDados] = useState(dadosInicial);
+  const [salvandoRegistro, setSalvandoRegistro] = useState(false);
+
+  const handleDados = (e) => {
+    const { name, value } = e.target;
+    setDados({ ...dados, [name]: value });
+  }
+
+  const salvarRegistro = async(e) => {  
+    e.preventDefault();
+
+     const payload = {
+      descricao: dados.descricao,
+      valor: dados.valor,
+      tipo: dados.tipo,
+      gasto: dados.gasto,
+      categoria: dados.categoria
     }
 
-    setLoading(true);
-
-    const registro = {
-      valor: parseFloat(valor),
-      tipo,
-      gasto,
-      categoria
-    };
+    const confirmar = window.confirm('Deseja realmente salvar este registro?');
+    if (!confirmar) return  
 
     try {
-      const response = await fetch('https://api-registro-de-gastos.vercel.app/api/registros/save', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(registro),
-      });
-      const data = await response.json();
-      console.log('✅ Registro salvo:', data);      
-      alert('Registro salvo com sucesso!');
+      setSalvandoRegistro(true);
+      const response = await api.post('/salvar-registro', payload);
+      console.log(response.data)
+      alert('Registro salvo com sucesso');   
+      setDados(dadosInicial);    
       audioMoeda.currentTime=0;
-      audioMoeda.play();
-      if (onSuccess) onSuccess(); // callback para limpar campos, etc.
-      if (onSuccess) onSuccessExtra();
+      audioMoeda.play();      
     } catch (error) {
       console.error('❌ Erro ao salvar registro:', error);
       alert('Erro ao salvar registro');
     } finally {
-      setLoading(false);
-      fetchRegistros();
+        setSalvandoRegistro(false);
     }
   };
 
-  return { salvarRegistro, loading };
+  return { 
+    dados,    
+    salvandoRegistro,
+    handleDados,
+    salvarRegistro
+  };
 }
