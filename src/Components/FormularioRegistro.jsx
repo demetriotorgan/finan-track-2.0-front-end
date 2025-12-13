@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import '../Styles/FormularioRegistro.css'
+import { ArrowBigLeft, Save } from 'lucide-react';
 
 const FormularioRegistro = () => {
   const dadosInicial = {
+    descricao:'',
     valor: '',
     tipo: 'credito',
     gasto: 'essencial',
@@ -17,13 +19,31 @@ const FormularioRegistro = () => {
     setDados({ ...dados, [name]: value });
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
+    const payload = {
+      descricao: dados.descricao,
+      valor: dados.valor,
+      tipo: dados.tipo,
+      gasto: dados.gasto,
+      categoria: dados.categoria
+    }
+    console.log('Payload: ', payload);
   }
 
   return (
     <form className="form-registro" onSubmit={handleSubmit}>
-
+      <label>
+        Descricao
+        <input 
+        type='text'
+        name='descricao'
+        placeholder='Descreva o gasto'
+        value={dados.descricao}
+        onChange={handleDados}
+        />
+      </label>
       <label>
         Valor
         <input
@@ -47,7 +67,7 @@ const FormularioRegistro = () => {
       </label>
 
       <label>
-        Natureza
+        Gasto
         <select 
           value={dados.gasto}
           onChange={handleDados}>
@@ -70,12 +90,13 @@ const FormularioRegistro = () => {
           <option value="agua">Água</option>
           <option value="luz">Luz</option>
           <option value="internet">Internet</option>
+          <option value="internet">Farmácia</option>
           <option value="outro">Outros</option>
         </select>
       </label>
 
-      <button type="submit" className="btn btn-salvar">Salvar</button>
-
+      <button type="submit" className="btn btn-salvar"><Save /> Salvar</button>
+      <button className='btn btn-editar'><ArrowBigLeft />Voltar</button>
     </form>
   )
 }
