@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Styles/GraficoCategoriasAgrupadas.css'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, ResponsiveContainer } from 'recharts';
 
 export function GraficoCategoriasAgrupado({ registros }) {
@@ -43,8 +44,8 @@ export function GraficoCategoriasAgrupado({ registros }) {
         <ResponsiveContainer>
           <BarChart data={dadosDebito} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="categoria" />
-            <YAxis />
+            <XAxis dataKey="categoria" tick={{ fill: '#fff' }} />
+            <YAxis tick={{ fill: '#fff' }} />
             <Tooltip formatter={(value) => [`R$ ${value.toFixed(2)}`, 'Valor']} />
             <Legend />
             <Bar dataKey="essencial" fill="#4caf50" name="Essencial" radius={[4, 4, 0, 0]} />
@@ -58,8 +59,8 @@ export function GraficoCategoriasAgrupado({ registros }) {
         <ResponsiveContainer>
           <BarChart data={dadosCredito} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="categoria" />
-            <YAxis />
+            <XAxis dataKey="categoria" tick={{ fill: '#fff' }} />
+            <YAxis tick={{ fill: '#fff' }} />
             <Tooltip formatter={(value) => [`R$ ${value.toFixed(2)}`, 'Valor']} />
             <Legend />
             <Bar dataKey="essencial" fill="#2196f3" name="Essencial" radius={[4, 4, 0, 0]} />
