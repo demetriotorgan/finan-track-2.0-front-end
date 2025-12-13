@@ -9,6 +9,8 @@ import GraficoPizza from './Components/GraficoPizza';
 import ResumoGeral from './Components/ResumoGeral';
 import TotaisPorCategoria from './Components/TotaisPorCategoria.jsx';
 import Menu from './Components/Menu.jsx';
+import RegistrosSalvos from './Components/RegistrosSalvos.jsx';
+import Objetivos from './Components/Objetivos.jsx';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,8 @@ const router = createBrowserRouter([
       { path: 'resumo', element: <ResumoGeral /> },
       { path: 'graficos', element: <GraficoPizza /> },
       { path: 'categorias', element: <TotaisPorCategoria /> },
+      { path: 'registrosSalvos', element: <RegistrosSalvos /> },
+      { path: 'objetivos', element: <Objetivos /> },
     ],
   },
 ]);

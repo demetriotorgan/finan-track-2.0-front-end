@@ -31,7 +31,7 @@
 .registro-valor {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--cor-terciaria);
+  color: var(--cor-texto);
 }
 
 /* Categoria */
@@ -73,6 +73,11 @@
   color: #9af0c9;
 }
 
+.badge.tipo.pix {
+  background: rgba(6, 77, 164, 0.2);
+  color: #0cb9f3;
+}
+
 /* Natureza */
 .badge.gasto.essencial {
   background: rgba(0, 183, 181, 0.25);
@@ -90,4 +95,17 @@
   margin-top: 10px;
   padding: 8px 16px;
   font-size: 0.9rem;
+}
+
+/* Descrição do registro */
+.registro-descricao {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--cor-texto);
+  opacity: 0.9;
+
+  padding-left: 12px;
+  border-left: 3px solid var(--cor-terciaria);
+
+  word-break: break-word;
 }

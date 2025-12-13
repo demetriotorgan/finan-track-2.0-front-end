@@ -67,8 +67,7 @@ const FormularioRegistro = () => {
         <select
           name="categoria"
           value={dados.categoria}
-          onChange={handleDados}
-        >
+          onChange={handleDados}>
           <option value="supermercado">Supermercado</option>
           <option value="bebidas">Bebidas</option>
           <option value="lanche">Lanche</option>
@@ -86,13 +85,11 @@ const FormularioRegistro = () => {
         type='date'
         name='data'
         value={dados.data}
-        onChange={handleDados}
-        />
+        onChange={handleDados}/>
       </label>
       <button type="submit" className="btn btn-salvar"><Save /> Salvar</button>      
       <button type='button' className='btn btn-editar' onClick={handleVoltar}><ArrowBigLeft />Voltar</button>
-    </form>
-    
+    </form>    
     </>
   )
 }
