@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
 
-export function useCarregarUltimosRegistros(){
+export function useCarregarRegistros(){
  const [carregarRegistros, setCarregarRegistros] = useState([]);
     const [loading, setLoading] = useState(false);
 

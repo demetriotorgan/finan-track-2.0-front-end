@@ -7,7 +7,7 @@ const MenuGrid = () => {
     <>
     <Link to="/gasto" className="menu-card">
         <Wallet size={42} />
-        <span>Gasto</span>
+        <span>Novo Gasto</span>
       </Link>
 
       <Link to="/resumo" className="menu-card">

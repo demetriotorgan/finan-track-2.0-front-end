@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import api from '../api/api'
 import Carregando from './Carregando';
 import '../Styles/RegistroContainer.css'
 import { Calendar, DollarSign, FileText, Tag, ArrowDownUp, AlertCircle, Pencil } from 'lucide-react';
-import { useCarregarUltimosRegistros } from '../Hooks/useCarregarUltimosRegistros';
+import { useCarregarRegistros } from '../Hooks/useCarregarRegistros';
 import ModalCarregando from '../Components/ModalCarregando';
 import { useExcluirRegistro } from '../Hooks/useExcluirRegistro';
 
 const UltimosRegistros = () => {
-    const { carregarRegistros, loading, carregarUltimosRegistros } = useCarregarUltimosRegistros();
+    const { carregarRegistros, loading, carregarUltimosRegistros } = useCarregarRegistros();
     const { excluindo, excluirRegistro } = useExcluirRegistro({ carregarUltimosRegistros });
 
     return (
