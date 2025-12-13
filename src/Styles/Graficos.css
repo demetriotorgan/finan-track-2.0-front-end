@@ -1,0 +1,9 @@
+.grafico-vazio {
+  margin: 16px 0;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}

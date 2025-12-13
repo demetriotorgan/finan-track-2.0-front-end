@@ -2,8 +2,9 @@ import React from 'react'
 import { calcularTotaisPorTipo } from '../utils/CalculoGraficoPizza'
 import GraficoPizza from '../Components/GraficoPizza'
 import { useCarregarRegistros } from '../Hooks/useCarregarRegistros'
-import { ArrowBigLeft } from 'lucide-react'
+import { ArrowBigLeft, ChartPie } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import '../Styles/Graficos.css'
 
 const Graficos = () => {
     const navigate = useNavigate();
@@ -12,8 +13,9 @@ const Graficos = () => {
     };
     const { carregarRegistros, loading } = useCarregarRegistros()
 
-    const dadosGraficoCredito = calcularTotaisPorTipo(carregarRegistros, 'credito')
-    const dadosGraficoDebito = calcularTotaisPorTipo(carregarRegistros, 'debito')
+    const dadosGraficoCredito = calcularTotaisPorTipo(carregarRegistros, 'credito');
+    const dadosGraficoDebito = calcularTotaisPorTipo(carregarRegistros, 'debito');
+    const dadosGraficoPix = calcularTotaisPorTipo(carregarRegistros, 'pix');
 
     const temDados = (dados) => {
         if (!dados) return false
@@ -23,20 +25,30 @@ const Graficos = () => {
         return Object.values(dados).some(v => v > 0)
     }
 
-    if (loading) return null
-
-    const temAlgumGrafico =
-        temDados(dadosGraficoCredito) || temDados(dadosGraficoDebito)
-
-    if (loading) return null
+    if (loading) return null   
 
     return (
         <div className="container">
-            {!temAlgumGrafico && (
+            <h2><ChartPie /> Graficos de gastos</h2>
+            {!temDados(dadosGraficoDebito) && (
                 <div className="grafico-vazio">
-                    📊 Aguardando dados para exibir os gráficos
+                    📊 Aguardando dados para exibir os gráficos de Débitos
                 </div>
             )}
+
+             {!temDados(dadosGraficoCredito) && (
+                <div className="grafico-vazio">
+                    📊 Aguardando dados para exibir os gráficos de Créditos
+                </div>
+            )}
+
+             {!temDados(dadosGraficoPix) && (
+                <div className="grafico-vazio">
+                    📊 Aguardando dados para exibir os gráficos de Pix
+                </div>
+            )}
+
+
             {temDados(dadosGraficoCredito) && (
                 <GraficoPizza
                     titulo="Gasto no Crédito"
@@ -50,6 +62,14 @@ const Graficos = () => {
                     data={dadosGraficoDebito}
                 />
             )}
+
+            {temDados(dadosGraficoPix) && (
+                <GraficoPizza
+                    titulo="Gasto no Pixs"
+                    data={dadosGraficoPix}
+                />
+            )}
+
             <button className='btn btn-editar' onClick={handleVoltar}><ArrowBigLeft /> Voltar</button>
         </div>
     )
