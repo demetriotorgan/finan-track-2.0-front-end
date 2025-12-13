@@ -1,0 +1,48 @@
+/* Grid que organiza os dois gráficos */
+.graficos-pizza-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 900px;
+  margin: 30px auto;
+}
+
+@media (min-width: 768px) {
+  .graficos-pizza-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Card individual */
+.grafico-pizza-card {
+  background: var(--cor-secundaria);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  color: var(--cor-texto);
+  margin: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Título do gráfico */
+.grafico-pizza-titulo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: var(--cor-terciaria);
+  text-align: center;
+}
+
+/* Box que centraliza o gráfico */
+.grafico-pizza-box {
+  width: 100%;
+  height: 260px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
