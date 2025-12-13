@@ -139,3 +139,23 @@ button, input, textarea, select {
 .btn-editar:hover {
   background: #d4a700;
 }
+
+@media (min-width: 768px) {
+  body {
+    background: linear-gradient(
+      135deg,
+      #003a44,
+      #005461
+    );
+  }
+
+  #root {
+    max-width: 430px;
+    margin: 30px auto;
+    min-height: calc(100vh - 60px);
+
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+  }
+}
