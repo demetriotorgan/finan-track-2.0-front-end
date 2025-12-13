@@ -1,6 +1,7 @@
+import React from 'react'
 import '../Styles/TotaisPorCategoria.css'
 
-export function TotaisPorCategoria({ registros }) {
+const TotaisPorCategoria = () => {
   const registrosComCategoria = registros.filter(r => r.categoria && r.categoria.trim() !== '');
 
   const totaisPorCategoria = registrosComCategoria.reduce((acc, registro) => {
@@ -40,3 +41,5 @@ export function TotaisPorCategoria({ registros }) {
     </div>
   );
 }
+
+export default TotaisPorCategoria

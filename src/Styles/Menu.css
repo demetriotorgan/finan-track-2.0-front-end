@@ -1,0 +1,53 @@
+/* ===========================
+   MENU EM GRADE (2x2)
+=========================== */
+
+.menu-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+
+  padding: 20px;
+}
+
+/* CARD DO MENU */
+.menu-card {
+  background: linear-gradient(
+    160deg,
+    var(--cor-secundaria),
+    var(--cor-terciaria)
+  );
+
+  color: var(--cor-texto);
+  border-radius: 18px;
+
+  min-height: 120px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  font-weight: 600;
+  font-size: 1rem;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ÍCONES */
+.menu-card svg {
+  color: var(--cor-texto);
+}
+
+/* HOVER / TOUCH */
+.menu-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+}
+
+/* FEEDBACK DE TOQUE (mobile) */
+.menu-card:active {
+  transform: scale(0.97);
+}

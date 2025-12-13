@@ -1,0 +1,13 @@
+/* ===========================
+   LAYOUT PRINCIPAL (STICKY FOOTER)
+=========================== */
+
+.app-layout {
+  min-height: 100vh; /* ocupa 100% da altura da tela */
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1; /* empurra o footer para o fundo */
+}

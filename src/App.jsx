@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import './App.css'
+import { Outlet } from 'react-router-dom';
 import Header from './Components/Header';
-import FormularioRegistro from './Components/FormularioRegistro';
-import GraficoPizza from './Components/GraficoPizza';
-import ResumoGeral from './Components/ResumoGeral';
-import RegistroContainer from './Components/RegistroContainer';
+import Footer from './Components/Footer';
 
-function App() { 
-    
+function App() {
   return (
-    <>
-      
-    </>
+    <div className="app-layout">
+      <Header />
+
+      <main className="app-content">
+        <Outlet />
+      </main>
+
+      <Footer />
+    </div>
   );
 }
 
