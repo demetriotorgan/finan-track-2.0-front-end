@@ -63,6 +63,10 @@
   border-left: 5px solid #00b36b;
 }
 
+.pix {
+  border-left: 5px solid #6f42c1;
+}
+
 /* Itens de informação */
 .info-item {
   display: flex;

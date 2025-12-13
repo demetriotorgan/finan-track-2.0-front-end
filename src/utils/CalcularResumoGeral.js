@@ -3,6 +3,7 @@
 export function calcularResumoGeral(registros) {
   const debitos = registros.filter(r => r.tipo === 'debito');
   const creditos = registros.filter(r => r.tipo === 'credito');
+  const pix = registros.filter(r => r.tipo === 'pix');
 
   const totalDebitoEssencial = debitos
     .filter(r => r.gasto === 'essencial')
@@ -20,6 +21,15 @@ export function calcularResumoGeral(registros) {
     .filter(r => r.gasto === 'nao-essencial')
     .reduce((acc, cur) => acc + cur.valor, 0);
 
+  const totalPixEssencial = pix
+    .filter(r => r.gasto === 'essencial')
+    .reduce((acc, cur) => acc + cur.valor, 0);
+
+  const totalPixNaoEssencial = pix
+    .filter(r => r.gasto === 'nao-essencial')
+    .reduce((acc, cur) => acc + cur.valor, 0);
+
+
   const datas = registros.map(r => new Date(r.data));
   const dataMaisAntiga = datas.length > 0 ? new Date(Math.min(...datas)) : new Date();
   const hoje = new Date();
@@ -33,6 +43,9 @@ export function calcularResumoGeral(registros) {
     totalDebitoNaoEssencial,
     totalCreditoEssencial,
     totalCreditoNaoEssencial,
-    diasRegistrados
+    diasRegistrados,
+    pix,
+    totalPixEssencial,
+    totalPixNaoEssencial
   };
 }

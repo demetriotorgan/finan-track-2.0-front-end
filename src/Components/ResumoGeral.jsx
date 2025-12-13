@@ -23,7 +23,10 @@ const ResumoGeral = () => {
     totalDebitoNaoEssencial,
     totalCreditoEssencial,
     totalCreditoNaoEssencial,
-    diasRegistrados
+    diasRegistrados,
+    pix,
+    totalPixEssencial,
+    totalPixNaoEssencial
   } = resumo;  
 
   return (
@@ -80,6 +83,31 @@ const ResumoGeral = () => {
           <div className="info-item total">
             <span><Banknote /> Total:</span>
             <strong>R$ {totalCreditoEssencial + totalCreditoNaoEssencial} </strong>
+          </div>
+        </div>
+
+        {/* Grupo pix */}
+        <div className="grupo-card pix">
+          <h3 className="grupo-titulo"><BadgeDollarSign /> Pix</h3>
+
+          <div className="info-item">
+            <span>Registros:</span>
+            <strong>{pix.length}</strong>
+          </div>
+
+          <div className="info-item">
+            <span>Essencial:</span>
+            <strong>R$ {totalPixEssencial} </strong>
+          </div>
+
+          <div className="info-item">
+            <span>Não-Essencial:</span>
+            <strong>R$ {totalPixNaoEssencial} </strong>
+          </div>
+
+          <div className="info-item total">
+            <span><Banknote /> Total:</span>
+            <strong>R$ {totalPixEssencial + totalPixNaoEssencial} </strong>
           </div>
         </div>
       </div>
