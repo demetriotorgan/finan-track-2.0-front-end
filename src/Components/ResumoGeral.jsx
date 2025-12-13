@@ -1,24 +1,41 @@
+import { ArrowBigLeft, BadgeDollarSign, Banknote } from 'lucide-react';
 import '../Styles/ResumoGeral.css'
+import { useNavigate } from 'react-router-dom';
+import { useCarregarRegistros } from '../Hooks/useCarregarRegistros';
+import { useMemo } from 'react';
+import { calcularResumoGeral } from '../utils/CalcularResumoGeral';
 
-const ResumoGeral = ({
-  diasRegistrados,
-  debitos,
-  totalDebitoEssencial,
-  totalDebitoNaoEssencial,
-  creditos,
-  totalCreditoEssencial,
-  totalCreditoNaoEssencial
-}) => {
+const ResumoGeral = () => {
+  const {carregarRegistros, loading, carregarUltimosRegistros} = useCarregarRegistros();
+  const navigate = useNavigate();  
+   const handleVoltar = () => {
+    navigate('/')
+  };
+
+  const resumo = useMemo(()=>{
+    return calcularResumoGeral(carregarRegistros);
+  }, [carregarRegistros]);
+
+  const {
+    debitos,
+    creditos,
+    totalDebitoEssencial,
+    totalDebitoNaoEssencial,
+    totalCreditoEssencial,
+    totalCreditoNaoEssencial,
+    diasRegistrados
+  } = resumo;  
+
   return (
     <div className="resumo-container">
-
       <h2 className="resumo-titulo">📊 Resumo Geral</h2>
       <p className="dias-info"><strong>Dias registrados:</strong> {diasRegistrados} dias</p>
 
       <div className="resumo-grupo">
+
         {/* Grupo Débitos */}
         <div className="grupo-card debito">
-          <h3 className="grupo-titulo">Débitos</h3>
+          <h3 className="grupo-titulo"><BadgeDollarSign /> Débitos</h3>
 
           <div className="info-item">
             <span>Registros:</span>
@@ -27,23 +44,23 @@ const ResumoGeral = ({
 
           <div className="info-item">
             <span>Essencial:</span>
-            <strong>R$ {totalDebitoEssencial.toFixed(2)}</strong>
+            <strong>R$ {totalDebitoEssencial}</strong>
           </div>
 
           <div className="info-item">
             <span>Não-Essencial:</span>
-            <strong>R$ {totalDebitoNaoEssencial.toFixed(2)}</strong>
+            <strong>R$ {totalDebitoNaoEssencial}</strong>
           </div>
 
           <div className="info-item total">
-            <span>Total:</span>
-            <strong>R$ {(totalDebitoEssencial + totalDebitoNaoEssencial).toFixed(2)}</strong>
+            <span><Banknote /> Total:</span>
+            <strong>R$ {totalDebitoEssencial + totalDebitoNaoEssencial}</strong>
           </div>
         </div>
 
         {/* Grupo Créditos */}
         <div className="grupo-card credito">
-          <h3 className="grupo-titulo">Créditos</h3>
+          <h3 className="grupo-titulo"><BadgeDollarSign /> Créditos</h3>
 
           <div className="info-item">
             <span>Registros:</span>
@@ -52,28 +69,30 @@ const ResumoGeral = ({
 
           <div className="info-item">
             <span>Essencial:</span>
-            <strong>R$ {totalCreditoEssencial.toFixed(2)}</strong>
+            <strong>R$ {totalCreditoEssencial} </strong>
           </div>
 
           <div className="info-item">
             <span>Não-Essencial:</span>
-            <strong>R$ {totalCreditoNaoEssencial.toFixed(2)}</strong>
+            <strong>R$ {totalCreditoNaoEssencial} </strong>
           </div>
 
           <div className="info-item total">
-            <span>Total:</span>
-            <strong>R$ {(totalCreditoEssencial + totalCreditoNaoEssencial).toFixed(2)}</strong>
+            <span><Banknote /> Total:</span>
+            <strong>R$ {totalCreditoEssencial + totalCreditoNaoEssencial} </strong>
           </div>
         </div>
       </div>
 
       <button
-        onClick={() => exportarParaCSV(registros)}
+        // onClick={() => exportarParaCSV(registros)}
         className="btn-download"
       >
         📥 Baixar Tabela CSV
-      </button>
+      </button>      
+      <button className='btn btn-editar' onClick={handleVoltar}><ArrowBigLeft /> Voltar</button>
     </div>
+    
   );
 };
 

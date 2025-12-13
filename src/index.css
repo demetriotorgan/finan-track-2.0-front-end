@@ -134,6 +134,7 @@ button, input, textarea, select {
 =========================== */
 .btn-editar {
   background: #e6b800; /* dourado/amarelo */
+  margin-top: 10px;
 }
 
 .btn-editar:hover {
