@@ -75,7 +75,7 @@ const FormularioRegistro = () => {
           <option value="agua">Água</option>
           <option value="luz">Luz</option>
           <option value="internet">Internet</option>
-          <option value="internet">Farmácia</option>
+          <option value="farmacia">Farmácia</option>
           <option value="outro">Outros</option>
         </select>
       </label>
