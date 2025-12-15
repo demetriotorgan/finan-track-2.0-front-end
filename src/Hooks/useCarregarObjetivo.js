@@ -24,6 +24,7 @@ export function usecarregarObjetivo() {
 
     return {
         objetivos,
-        loading
+        loading,
+        carregarObjetivos
     }
 }

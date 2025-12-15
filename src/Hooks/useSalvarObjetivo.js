@@ -3,7 +3,7 @@ import api from "../api/api";
 import { dateToIso, isoToDateEdit } from "../utils/time";
 
 
-export function useSalvarObjetivo() {
+export function useSalvarObjetivo({carregarObjetivos}) {
     const hojeISO = new Date().toISOString();
 
     const objetivoInicial = {
@@ -40,6 +40,7 @@ export function useSalvarObjetivo() {
             console.log(response.data);
             alert('Objetivo salvo com sucesso');
             setDadosObjetivo(objetivoInicial);
+            carregarObjetivos();
 
         } catch (error) {
             console.log(error);

@@ -8,16 +8,16 @@ import Carregando from '../Components/Carregando'
 import { useCarregarRegistros } from '../Hooks/useCarregarRegistros';
 import { calcularLimite } from '../utils/calcularLimite';
 import { useNavigate } from 'react-router-dom';
-import { ArrowBigLeft } from 'lucide-react';
+import { ArrowBigLeft, Trash2 } from 'lucide-react';
+import BarraLimite from './BarraLimite';
 
-const CardObjetivo = () => {
+const CardObjetivo = ({ objetivos, loading, excluirObjetivo }) => {
     const navigate = useNavigate();
     const handleVoltar = () => {
         navigate('/')
     }
-    const { objetivos, loading } = usecarregarObjetivo();
     const { carregarRegistros } = useCarregarRegistros();
-
+    
     return (
         <>
             <div className='container'>
@@ -30,18 +30,21 @@ const CardObjetivo = () => {
                         excedeuLimite
                     } = calcularLimite(objetivo, carregarRegistros);
 
-                    return (
-                        <div key={objetivo._id} className="card-objetivo">
-                            <h3>{objetivo.descricao}</h3>
+                    return (                                                                        
+                        <div key={objetivo._id} className="card-objetivo">                            
+                            <h3><button className='btn-excluir' onClick={() => excluirObjetivo(objetivo._id)}><Trash2 /></button> {objetivo.descricao}</h3>
                             <p><strong>Categoria:</strong> {objetivo.categoria}</p>
                             <p><strong>Limite:</strong> {formatarMoedaBR(limite)}</p>
                             <p><strong>Gasto:</strong> {formatarMoedaBR(valorGasto)}</p>
                             <p><strong>Uso:</strong> {percentualUsado}%</p>
 
+                            <BarraLimite percentualUsado={percentualUsado} />
+
                             {excedeuLimite && (
                                 <span className="alerta-limite">Limite excedido</span>
                             )}
-                        </div>
+                            
+                        </div>                        
                     );
                 })}
                 <button type='button' className='btn btn-editar' onClick={handleVoltar}><ArrowBigLeft />Voltar</button>

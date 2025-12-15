@@ -39,3 +39,9 @@
   margin: 0;
   color: var(--cor-texto);
 }
+
+.btn-excluir{
+  color: var(--cor-texto);
+  background: none;
+  border: none;
+}

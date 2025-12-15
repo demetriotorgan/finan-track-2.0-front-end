@@ -1,0 +1,28 @@
+.barra-limite {
+  width: 100%;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+/* Barra interna */
+.barra-limite-preenchida {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.4s ease;
+}
+
+/* Níveis de uso */
+.barra-limite-preenchida.baixo {
+  background-color: var(--cor-terciaria);
+}
+
+.barra-limite-preenchida.medio {
+  background-color: #f4c430; /* amarelo elegante */
+}
+
+.barra-limite-preenchida.alto {
+  background-color: #e74c3c; /* vermelho alerta */
+}

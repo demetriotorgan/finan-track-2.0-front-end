@@ -5,9 +5,13 @@ import { useSalvarObjetivo } from '../Hooks/useSalvarObjetivo';
 import CardObjetivo from './CardObjetivo';
 import { useNavigate } from 'react-router-dom';
 import { ArrowBigLeft } from 'lucide-react';
+import { usecarregarObjetivo } from '../Hooks/useCarregarObjetivo';
+import { useExcluirObjetivo } from '../Hooks/useExcluirObjetivo';
 
 const Objetivos = () => {  
-    const {dadosObjetivo, handleDados, salvarObjetivo} = useSalvarObjetivo();
+    const { objetivos, loading,carregarObjetivos } = usecarregarObjetivo();
+    const {excluindoObjetivo, excluirObjetivo} = useExcluirObjetivo({carregarObjetivos});
+    const {dadosObjetivo, handleDados, salvarObjetivo} = useSalvarObjetivo({carregarObjetivos});
 
   return (
     <>
@@ -75,7 +79,11 @@ const Objetivos = () => {
       <button className='btn btn-salvar' onClick={salvarObjetivo}>Salvar</button>
       </div>           
     </div>
-    <CardObjetivo />
+    <CardObjetivo
+    objetivos={objetivos}
+    loading={loading}
+    excluirObjetivo={excluirObjetivo}
+    />
     
     </>
   )
