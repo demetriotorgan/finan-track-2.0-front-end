@@ -12,10 +12,23 @@ export function calcularLimite(objetivo, registros = []) {
 
   const limite = Number(objetivo.limite) || 0;
   const categoriaObjetivo = objetivo.categoria;
+  const gastoObjetivo = objetivo.gasto;
+  const tipoObjetivo = objetivo.tipo; // 🔹 NOVO
+  const periodoObjetivo = Number(objetivo.periodo); // 1–12
 
-  // Soma apenas registros da mesma categoria
   const valorGasto = registros
-    .filter(registro => registro.categoria === categoriaObjetivo)
+    .filter(registro => {
+      if (!registro.data) return false;
+
+      const mesRegistro = new Date(registro.data).getMonth() + 1;
+
+      return (
+        registro.categoria === categoriaObjetivo &&
+        registro.gasto === gastoObjetivo &&
+        registro.tipo === tipoObjetivo && // 🔹 NOVO FILTRO
+        mesRegistro === periodoObjetivo
+      );
+    })
     .reduce((total, registro) => total + Number(registro.valor || 0), 0);
 
   const saldoRestante = limite - valorGasto;

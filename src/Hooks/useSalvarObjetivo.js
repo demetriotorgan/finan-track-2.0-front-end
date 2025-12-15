@@ -9,8 +9,10 @@ export function useSalvarObjetivo({carregarObjetivos}) {
     const objetivoInicial = {
         descricao: '',
         limite: '',
+        tipo: 'credito',
         categoria: 'supermercado',
         periodo: '1',
+        gasto:'essencial',
         data: isoToDateEdit(hojeISO)
     };
 
@@ -26,8 +28,10 @@ export function useSalvarObjetivo({carregarObjetivos}) {
         const payload = {
             descricao: dadosObjetivo.descricao,
             limite: dadosObjetivo.limite,
+            tipo: dadosObjetivo.tipo,
             categoria: dadosObjetivo.categoria,
             periodo: dadosObjetivo.periodo,
+            gasto: dadosObjetivo.gasto,
             data: dateToIso(dadosObjetivo.data)
         }
 
@@ -36,6 +40,7 @@ export function useSalvarObjetivo({carregarObjetivos}) {
 
         try {
             setSalvandoObjetivo(true);
+            console.log('Paylaod', payload)
             const response = await api.post('/salvar-objetivo', payload);
             console.log(response.data);
             alert('Objetivo salvo com sucesso');

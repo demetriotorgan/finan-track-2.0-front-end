@@ -10,6 +10,7 @@ import { calcularLimite } from '../utils/calcularLimite';
 import { useNavigate } from 'react-router-dom';
 import { ArrowBigLeft, Trash2 } from 'lucide-react';
 import BarraLimite from './BarraLimite';
+import {mesPorNumero} from '../utils/mesPorNumero'
 
 const CardObjetivo = ({ objetivos, loading, excluirObjetivo }) => {
     const navigate = useNavigate();
@@ -34,8 +35,11 @@ const CardObjetivo = ({ objetivos, loading, excluirObjetivo }) => {
                         <div key={objetivo._id} className="card-objetivo">                            
                             <h3><button className='btn-excluir' onClick={() => excluirObjetivo(objetivo._id)}><Trash2 /></button> {objetivo.descricao}</h3>
                             <p><strong>Categoria:</strong> {objetivo.categoria}</p>
+                            <p><strong>Gastos:</strong> {objetivo.gasto}</p>
+                            <p><strong>Período:</strong> {mesPorNumero(objetivo.periodo)}</p>                            
+                            <p><strong>Tipo de Pag:</strong> {objetivo.tipo}</p>
+                            <p><strong>Valor Total:</strong> {formatarMoedaBR(valorGasto)}</p>
                             <p><strong>Limite:</strong> {formatarMoedaBR(limite)}</p>
-                            <p><strong>Gasto:</strong> {formatarMoedaBR(valorGasto)}</p>
                             <p><strong>Uso:</strong> {percentualUsado}%</p>
 
                             <BarraLimite percentualUsado={percentualUsado} />
