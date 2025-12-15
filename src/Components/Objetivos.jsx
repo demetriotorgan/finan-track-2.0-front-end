@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { dateToIso, isoToDateEdit } from '../utils/time';
 import api from '../api/api';
 import { useSalvarObjetivo } from '../Hooks/useSalvarObjetivo';
+import CardObjetivo from './CardObjetivo';
 
 const Objetivos = () => {
     const {dadosObjetivo, handleDados, salvarObjetivo} = useSalvarObjetivo();
 
   return (
+    <>
     <div className='container'>
       <h2>Cadastrar Objetivos</h2>
       <div className='form-registro'>
@@ -71,6 +73,8 @@ const Objetivos = () => {
       <button className='btn btn-salvar' onClick={salvarObjetivo}>Salvar</button>
       </div>     
     </div>
+    <CardObjetivo />
+    </>
   )
 }
 
