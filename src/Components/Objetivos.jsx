@@ -3,8 +3,10 @@ import { dateToIso, isoToDateEdit } from '../utils/time';
 import api from '../api/api';
 import { useSalvarObjetivo } from '../Hooks/useSalvarObjetivo';
 import CardObjetivo from './CardObjetivo';
+import { useNavigate } from 'react-router-dom';
+import { ArrowBigLeft } from 'lucide-react';
 
-const Objetivos = () => {
+const Objetivos = () => {  
     const {dadosObjetivo, handleDados, salvarObjetivo} = useSalvarObjetivo();
 
   return (
@@ -71,9 +73,10 @@ const Objetivos = () => {
         />
       </label>
       <button className='btn btn-salvar' onClick={salvarObjetivo}>Salvar</button>
-      </div>     
+      </div>           
     </div>
     <CardObjetivo />
+    
     </>
   )
 }
