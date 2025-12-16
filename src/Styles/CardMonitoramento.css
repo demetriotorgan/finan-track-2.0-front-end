@@ -1,0 +1,57 @@
+.monitoramento-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.card-monitoramento {
+  background: linear-gradient(
+    135deg,
+    var(--cor-primaria),
+    var(--cor-secundaria)
+  );
+  color: var(--cor-texto);
+  padding: 18px 22px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover elegante */
+.card-monitoramento:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+}
+
+.card-monitoramento p {
+  margin: 0;
+  font-size: 0.95rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Destaque para o primeiro item (título) */
+.card-monitoramento p:first-child {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--cor-terciaria);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+
+.card-monitoramento p strong {
+  font-weight: 500;
+  color: var(--cor-terciaria);
+}
+
+.btn-trash{
+  background:none;
+  border: none;
+  text-align: right;
+  color: var(--cor-primaria);
+}
