@@ -9,7 +9,7 @@ export function useCarregarRegistros(){
         try {
             setLoading(true);
             const response = await api.get('/listar-registros');
-            console.log(response.data);
+            // console.log(response.data);
             setCarregarRegistros(response.data);
         } catch (error) {
             console.log(error);

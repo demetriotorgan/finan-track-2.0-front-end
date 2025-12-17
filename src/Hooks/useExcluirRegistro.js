@@ -12,7 +12,7 @@ const excluirRegistro = async(item)=>{
         try {
             setExcluindo(true);
             const response = await api.delete(`/deletar-registro/${item._id}`);
-            console.log(response.data);
+            // console.log(response.data);
             alert('Registro excluido com sucesso');
             carregarUltimosRegistros();
         } catch (error) {

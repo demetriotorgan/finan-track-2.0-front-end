@@ -1,0 +1,25 @@
+/* ===================== */
+/* SEÇÃO POR MÊS */
+/* ===================== */
+
+.secao-mes {
+  margin-bottom: 32px;
+}
+
+.titulo-mes {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--cor-terciaria);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Lista de registros dentro do mês */
+.lista-registros-mes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}

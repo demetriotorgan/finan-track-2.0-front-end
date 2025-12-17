@@ -1,5 +1,6 @@
 import { AlertCircle, ArrowDownUp, Calendar, DollarSign, FileText, Tag } from 'lucide-react'
 import React from 'react'
+import { isoToDate } from '../utils/time'
 
 const CardRegistro = ({ registro, excluirRegistro }) => {
     return (
@@ -7,13 +8,13 @@ const CardRegistro = ({ registro, excluirRegistro }) => {
             {/* Data */}
             <span className="registro-data">
                 <Calendar size={14} />
-                {new Date(registro.data).toLocaleDateString()}
+                {isoToDate(registro.data)}
             </span>
 
             {/* Valor */}
             <div className="registro-valor">
                 <DollarSign size={18} />
-                R$ {registro.valor.toFixed(2)}
+                R$ {Number(registro.valor ?? 0).toFixed(2)}
             </div>
 
             {/* Descrição */}
