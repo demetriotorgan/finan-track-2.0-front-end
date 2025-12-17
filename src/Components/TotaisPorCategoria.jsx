@@ -45,8 +45,11 @@ const TotaisPorCategoria = () => {
             <p><strong>Não Essencial:</strong> R$ {naoEssencial.toFixed(2)}</p>
           </div>
         </div>
-      ))}      
-    <button className='btn btn-editar' onClick={handleVoltar}><ArrowBigLeft /> Voltar</button>
+      ))}    
+      <div className='container'>
+        <button className='btn btn-editar' onClick={handleVoltar}><ArrowBigLeft /> Voltar</button>
+      </div>  
+    
     </div>
     
     </>

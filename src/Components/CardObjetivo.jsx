@@ -12,11 +12,7 @@ import { ArrowBigLeft, Trash2 } from 'lucide-react';
 import BarraLimite from './BarraLimite';
 import { mesPorNumero } from '../utils/mesPorNumero'
 
-const CardObjetivo = ({ objetivos, loading, excluirObjetivo }) => {
-    const navigate = useNavigate();
-    const handleVoltar = () => {
-        navigate('/')
-    }
+const CardObjetivo = ({ objetivos, loading, excluirObjetivo }) => {    
     const { carregarRegistros } = useCarregarRegistros();
 
     return (
@@ -92,8 +88,7 @@ const CardObjetivo = ({ objetivos, loading, excluirObjetivo }) => {
                             )}
                         </div>
                     );
-                })}
-                <button type='button' className='btn btn-editar' onClick={handleVoltar}><ArrowBigLeft />Voltar</button>
+                })}                
             </div>
         </>
     )

@@ -9,6 +9,11 @@ import { usecarregarObjetivo } from '../Hooks/useCarregarObjetivo';
 import { useExcluirObjetivo } from '../Hooks/useExcluirObjetivo';
 
 const Objetivos = () => {
+  const navigate = useNavigate();
+  const handleVoltar = () => {
+    navigate('/')
+  }
+
   const { objetivos, loading, carregarObjetivos } = usecarregarObjetivo();
   const { excluindoObjetivo, excluirObjetivo } = useExcluirObjetivo({ carregarObjetivos });
   const { dadosObjetivo, handleDados, salvarObjetivo } = useSalvarObjetivo({ carregarObjetivos });
@@ -99,6 +104,9 @@ const Objetivos = () => {
         loading={loading}
         excluirObjetivo={excluirObjetivo}
       />
+      <div className='container'>
+        <button type='button' className='btn btn-editar' onClick={handleVoltar}><ArrowBigLeft />Voltar</button>
+      </div>
 
     </>
   )
