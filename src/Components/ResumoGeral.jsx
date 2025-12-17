@@ -157,12 +157,52 @@ const ResumoGeral = () => {
 
             return (
               <div key={monitoramento._id} className="card-monitoramento">
-                <p><strong>Monitoramento:</strong> {monitoramento.descricao}</p>
-                <p><strong>Tipo:</strong> {monitoramento.tipo}</p>
-                <p><strong>Limite:</strong> R$ {monitoramento.limite}</p>
-                <p><strong>Período:</strong> {mesPorNumero(monitoramento.periodo)}</p>
-                <p><strong>Gasto:</strong> R$ {totalUsado}</p>
-                <p><strong>Uso:</strong> {percentualUsado}%</p>
+
+                <h4 className="monitoramento-titulo">
+                  {monitoramento.descricao}
+                  <button
+                    className="btn-trash"
+                    onClick={() => excluirMonitoramento(monitoramento._id)}
+                  >
+                    <Trash />
+                  </button>
+                </h4>
+
+                {/* Grupo 1 – Data e Período */}
+                <div className="monitoramento-grupo">
+                  <div>
+                    <span>Data</span>
+                    <strong>{isoToDate(monitoramento.data)}</strong>
+                  </div>
+                  <div>
+                    <span>Período</span>
+                    <strong>{mesPorNumero(monitoramento.periodo)}</strong>
+                  </div>
+                </div>
+
+                {/* Grupo 2 – Tipo e Limite */}
+                <div className="monitoramento-grupo">
+                  <div>
+                    <span>Tipo</span>
+                    <strong>{monitoramento.tipo}</strong>
+                  </div>
+                  <div>
+                    <span>Limite</span>
+                    <strong>R$ {monitoramento.limite}</strong>
+                  </div>
+                </div>
+
+                {/* Grupo 3 – Gasto e Uso */}
+                <div className="monitoramento-grupo destaque-valores">
+                  <div>
+                    <span>Gasto</span>
+                    <strong>R$ {totalUsado}</strong>
+                  </div>
+                  <div>
+                    <span>Uso</span>
+                    <strong>{percentualUsado}%</strong>
+                  </div>
+                </div>
 
                 <BarraLimite percentualUsado={percentualUsado} />
 
@@ -170,13 +210,8 @@ const ResumoGeral = () => {
                   <span className="alerta-limite">⚠ Limite excedido</span>
                 )}
 
-                <button
-                  className="btn-trash"
-                  onClick={() => excluirMonitoramento(monitoramento._id)}
-                >
-                  <Trash />
-                </button>
               </div>
+
             );
           })}
 

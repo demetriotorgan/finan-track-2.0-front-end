@@ -45,3 +45,75 @@
   background: none;
   border: none;
 }
+
+/* ===================== */
+/* GRUPOS DE INFORMAÇÃO */
+/* ===================== */
+
+.grupo-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.grupo-info div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.grupo-info span {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.grupo-info strong {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
+
+/* Destaque para valores financeiros */
+.destaque-valores strong {
+  color: var(--cor-terciaria);
+  font-size: 1rem;
+}
+
+/* ===================== */
+/* USO + BARRA */
+/* ===================== */
+
+.uso-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.uso-container span {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.uso-container strong {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cor-terciaria);
+}
+
+/* ===================== */
+/* ALERTA */
+/* ===================== */
+
+.alerta-limite {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffb3b3;
+  text-align: center;
+}

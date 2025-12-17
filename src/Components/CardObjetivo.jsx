@@ -10,7 +10,7 @@ import { calcularLimite } from '../utils/calcularLimite';
 import { useNavigate } from 'react-router-dom';
 import { ArrowBigLeft, Trash2 } from 'lucide-react';
 import BarraLimite from './BarraLimite';
-import {mesPorNumero} from '../utils/mesPorNumero'
+import { mesPorNumero } from '../utils/mesPorNumero'
 
 const CardObjetivo = ({ objetivos, loading, excluirObjetivo }) => {
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const CardObjetivo = ({ objetivos, loading, excluirObjetivo }) => {
         navigate('/')
     }
     const { carregarRegistros } = useCarregarRegistros();
-    
+
     return (
         <>
             <div className='container'>
@@ -31,24 +31,66 @@ const CardObjetivo = ({ objetivos, loading, excluirObjetivo }) => {
                         excedeuLimite
                     } = calcularLimite(objetivo, carregarRegistros);
 
-                    return (                                                                        
-                        <div key={objetivo._id} className="card-objetivo">                            
-                            <h3><button className='btn-excluir' onClick={() => excluirObjetivo(objetivo._id)}><Trash2 /></button> {objetivo.descricao}</h3>
-                            <p><strong>Categoria:</strong> {objetivo.categoria}</p>
-                            <p><strong>Gastos:</strong> {objetivo.gasto}</p>
-                            <p><strong>Período:</strong> {mesPorNumero(objetivo.periodo)}</p>                            
-                            <p><strong>Tipo de Pag:</strong> {objetivo.tipo}</p>
-                            <p><strong>Valor Total:</strong> {formatarMoedaBR(valorGasto)}</p>
-                            <p><strong>Limite:</strong> {formatarMoedaBR(limite)}</p>
-                            <p><strong>Uso:</strong> {percentualUsado}%</p>
+                    return (
+                        <div key={objetivo._id} className="card-objetivo">
+                            <h3>
+                                <button
+                                    className="btn-excluir"
+                                    onClick={() => excluirObjetivo(objetivo._id)}
+                                >
+                                    <Trash2 />
+                                </button>
+                                {objetivo.descricao}
+                            </h3>
+
+                            {/* Grupo 1 */}
+                            <div className="grupo-info">
+                                <div>
+                                    <span>Categoria</span>
+                                    <strong>{objetivo.categoria}</strong>
+                                </div>
+                                <div>
+                                    <span>Gastos</span>
+                                    <strong>{objetivo.gasto}</strong>
+                                </div>
+                            </div>
+
+                            {/* Grupo 2 */}
+                            <div className="grupo-info">
+                                <div>
+                                    <span>Período</span>
+                                    <strong>{mesPorNumero(objetivo.periodo)}</strong>
+                                </div>
+                                <div>
+                                    <span>Tipo de Pag.</span>
+                                    <strong>{objetivo.tipo}</strong>
+                                </div>
+                            </div>
+
+                            {/* Grupo 3 */}
+                            <div className="grupo-info destaque-valores">
+                                <div>
+                                    <span>Valor Total</span>
+                                    <strong>{formatarMoedaBR(valorGasto)}</strong>
+                                </div>
+                                <div>
+                                    <span>Limite</span>
+                                    <strong>{formatarMoedaBR(limite)}</strong>
+                                </div>
+                            </div>
+
+                            {/* Uso */}
+                            <div className="uso-container">
+                                <span>Uso do limite</span>
+                                <strong>{percentualUsado}%</strong>
+                            </div>
 
                             <BarraLimite percentualUsado={percentualUsado} />
 
                             {excedeuLimite && (
-                                <span className="alerta-limite">Limite excedido</span>
+                                <span className="alerta-limite">⚠ Limite excedido</span>
                             )}
-                            
-                        </div>                        
+                        </div>
                     );
                 })}
                 <button type='button' className='btn btn-editar' onClick={handleVoltar}><ArrowBigLeft />Voltar</button>
