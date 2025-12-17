@@ -1,10 +1,28 @@
-// utils/calcularTotaisPorCategoria.js
-
-export function calcularTotaisPorCategoria(registros = []) {
+export function calcularTotaisPorCategoria(
+  registros = [],
+  filtroMesAno = null
+) {
   if (!Array.isArray(registros)) return [];
 
-  const registrosComCategoria = registros.filter(
-    r => r.categoria && r.categoria.trim() !== ''
+  let registrosFiltrados = registros;
+
+  // 🔹 aplica filtro por mês/ano se informado
+  if (filtroMesAno) {
+    const { mes, ano } = filtroMesAno;
+
+    registrosFiltrados = registros.filter((r) => {
+      if (!r.data) return false;
+
+      const data = new Date(r.data);
+      return (
+        data.getMonth() + 1 === mes &&
+        data.getFullYear() === ano
+      );
+    });
+  }
+
+  const registrosComCategoria = registrosFiltrados.filter(
+    (r) => r.categoria && r.categoria.trim() !== ''
   );
 
   const totaisPorCategoria = registrosComCategoria.reduce((acc, registro) => {
@@ -21,7 +39,6 @@ export function calcularTotaisPorCategoria(registros = []) {
     return acc;
   }, {});
 
-  // transforma em array para o map da UI
   return Object.entries(totaisPorCategoria).map(
     ([categoria, valores]) => ({
       categoria,
