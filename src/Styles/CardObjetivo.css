@@ -46,6 +46,18 @@
   border: none;
 }
 
+/* Remove fundo ao clicar */
+.btn-excluir:active {
+  background-color: transparent;
+}
+
+/* Remove fundo ao focar */
+.btn-excluir:focus,
+.btn-excluir:focus-visible {
+  background-color: transparent;
+  outline: none;
+}
+
 /* ===================== */
 /* GRUPOS DE INFORMAÇÃO */
 /* ===================== */
