@@ -18,8 +18,7 @@ import CardMonitoramento from './CardMonitoramento';
 const ResumoGeral = () => {
   const { carregarRegistros } = useCarregarRegistros();
   const { monitoramentos, carregarMonitoramentos } = useCarregarMonitoramento();
-  const { excluindoMonitoramento, excluirMonitoramento } =
-    useExcluirMonitoramento({ carregarMonitoramentos });
+  const { excluindoMonitoramento, excluirMonitoramento } = useExcluirMonitoramento({ carregarMonitoramentos });
 
   const {
     dadosMonitoramento,
