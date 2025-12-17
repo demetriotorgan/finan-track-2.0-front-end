@@ -2,7 +2,7 @@ import { useState } from "react";
 import { dateToIso } from "../utils/time";
 import api from "../api/api";
 
-export function useSalvarCartao() {
+export function useSalvarCartao({carregarCartoes}) {
     const hoje = new Date();
 
     const cartaoInicial = {
@@ -36,6 +36,7 @@ export function useSalvarCartao() {
             console.log(response.data);
             alert('Cartão salvo com sucesso');
             setCartao(cartaoInicial);
+            carregarCartoes();
         } catch (error) {
             console.log(error)
         } finally {

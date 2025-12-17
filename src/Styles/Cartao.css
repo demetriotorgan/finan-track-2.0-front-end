@@ -1,0 +1,74 @@
+/* Grid dos cartões */
+.cartoes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* Card principal */
+.card-cartao {
+  background: var(--cor-secundaria);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-cartao:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+}
+
+/* Header */
+.card-cartao-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 6px;
+}
+
+/* Corpo */
+.card-cartao-body {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.cartao-info {
+  display: flex;
+  flex-direction: column;
+  background: var(--cor-primaria);
+  padding: 10px;
+  border-radius: 12px;
+  flex: 1;
+}
+
+.cartao-info span {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.cartao-info strong {
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+/* Barra de limite */
+.card-cartao-barra {
+  margin: 10px 0;
+}
+
+/* Rodapé */
+.card-cartao-footer {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
