@@ -14,6 +14,7 @@ import { Activity, Flag } from 'lucide-react';
 import { usecarregarObjetivo } from '../Hooks/useCarregarObjetivo';
 import { useExcluirObjetivo } from '../Hooks/useExcluirObjetivo';
 import CardObjetivo from './CardObjetivo';
+import StatusBanco from './StatusBanco';
 
 
 const Menu = () => {
@@ -26,6 +27,7 @@ const Menu = () => {
 
   return (
     <>
+      <StatusBanco />
       <div className="menu-container">
         <MenuGrid />
       </div>

@@ -1,0 +1,39 @@
+.status-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: var(--cor-primaria);
+  color: var(--cor-texto);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  font-size: 0.95rem;
+}
+
+.status-card.ok {
+  border-left: 6px solid #2ecc71;
+}
+
+.status-card.erro {
+  border-left: 6px solid #e74c3c;
+}
+
+.status-card.loading {
+  opacity: 0.85;
+}
+
+.status-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #ddd;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
