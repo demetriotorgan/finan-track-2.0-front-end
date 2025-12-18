@@ -10,7 +10,7 @@ import { calcularMonitoramento } from '../utils/calcularMonitoramento';
 import CardMonitoramento from './CardMonitoramento';
 import { useExcluirMonitoramento } from '../Hooks/useExcluirMonitoramento';
 import { useCarregarRegistros } from '../Hooks/useCarregarRegistros';
-import { Activity, Flag, Wallet } from 'lucide-react';
+import { Activity, Flag, Grid3x2, Wallet } from 'lucide-react';
 import { usecarregarObjetivo } from '../Hooks/useCarregarObjetivo';
 import { useExcluirObjetivo } from '../Hooks/useExcluirObjetivo';
 import CardObjetivo from './CardObjetivo';
@@ -20,6 +20,7 @@ import { useCarregarCartoes } from '../Hooks/useCarregarCartoes';
 import { useSalvarCartao } from '../Hooks/useSalvarCartao';
 import { useExcluirCartao } from '../Hooks/useExcluirCartao';
 import CardCartao from './CardCartao';
+import { exportarParaCSV } from '../utils/ExportarCSV';
 
 
 const Menu = () => {
@@ -32,6 +33,19 @@ const Menu = () => {
 
   const { objetivos, loading, carregarObjetivos } = usecarregarObjetivo();
   const { excluindoObjetivo, excluirObjetivo } = useExcluirObjetivo({ carregarObjetivos });
+
+  const handleExportar =()=>{
+    const confirmar = window.confirm('Deseja exportar os dados?');
+    if(!confirmar) return
+
+    try {
+      exportarParaCSV(carregarRegistros);
+      alert('Tabela exportada com sucesso');
+    } catch (error) {
+      alert('Erro ao exportar tabela de dados');
+      console.log(error);
+    }
+  }
 
   return (
     <>
@@ -94,6 +108,11 @@ const Menu = () => {
       <div className='container'>
         {carregandoRegistros && <Carregando />}
         <UltimosRegistros />
+      </div>
+      <div className='container'>
+        <div className='container-exportar'>
+        <button className='btn-exportar' onClick={handleExportar}><Grid3x2 /> Exportar Dados CSV</button>
+        </div>
       </div>
     </>
   )
