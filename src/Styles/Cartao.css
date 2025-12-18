@@ -72,3 +72,31 @@
   font-size: 0.75rem;
   color: var(--color-text-muted);
 }
+
+.cartao-percentual {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 10px 14px;
+  margin-top: 10px;
+
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+
+  font-size: 0.95rem;
+  color: var(--cor-texto);
+
+  border-left: 4px solid var(--cor-secundaria);
+}
+
+.cartao-percentual span {
+  opacity: 0.85;
+}
+
+.cartao-percentual strong {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--cor-terciaria);
+}

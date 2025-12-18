@@ -10,9 +10,11 @@ import BarraLimite from '../Components/BarraLimite';
 import { useCarregarCartoes } from '../Hooks/useCarregarCartoes';
 import CardCartao from './CardCartao';
 import { useExcluirCartao } from '../Hooks/useExcluirCartao';
+import { useCarregarRegistros } from '../Hooks/useCarregarRegistros';
 
 
 const Cartao = () => {
+    const {carregarRegistros} = useCarregarRegistros();
     const { cartoes, carregarCartoes, carregandoCartoes } = useCarregarCartoes();
     const { cartao, handleCartao, salvarCartao, salvandoCartao } = useSalvarCartao({carregarCartoes});
     const {excluindoCartao, excluirCartao} = useExcluirCartao({carregarCartoes});
@@ -63,7 +65,8 @@ const Cartao = () => {
             </div>
 
             <CardCartao
-                cartoes={cartoes}                
+                cartoes={cartoes}    
+                registros={carregarRegistros}            
                 carregandoCartoes={carregandoCartoes}
                 excluindoCartao={excluindoCartao}
                 excluirCartao={excluirCartao}
