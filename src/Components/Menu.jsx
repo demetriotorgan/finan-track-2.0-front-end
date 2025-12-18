@@ -10,16 +10,23 @@ import { calcularMonitoramento } from '../utils/calcularMonitoramento';
 import CardMonitoramento from './CardMonitoramento';
 import { useExcluirMonitoramento } from '../Hooks/useExcluirMonitoramento';
 import { useCarregarRegistros } from '../Hooks/useCarregarRegistros';
-import { Activity, Flag } from 'lucide-react';
+import { Activity, Flag, Wallet } from 'lucide-react';
 import { usecarregarObjetivo } from '../Hooks/useCarregarObjetivo';
 import { useExcluirObjetivo } from '../Hooks/useExcluirObjetivo';
 import CardObjetivo from './CardObjetivo';
 import StatusBanco from './StatusBanco';
 import Carregando from './Carregando';
+import { useCarregarCartoes } from '../Hooks/useCarregarCartoes';
+import { useSalvarCartao } from '../Hooks/useSalvarCartao';
+import { useExcluirCartao } from '../Hooks/useExcluirCartao';
+import CardCartao from './CardCartao';
 
 
 const Menu = () => {
-  const { carregarRegistros,carregandoRegistros } = useCarregarRegistros();
+  const { cartoes, carregarCartoes, carregandoCartoes } = useCarregarCartoes();
+  const { excluindoCartao, excluirCartao } = useExcluirCartao({ carregarCartoes });
+
+  const { carregarRegistros, carregandoRegistros } = useCarregarRegistros();
   const { monitoramentos, carregarMonitoramentos, carregandoMonitoramento } = useCarregarMonitoramento();
   const { excluindoMonitoramento, excluirMonitoramento } = useExcluirMonitoramento({ carregarMonitoramentos });
 
@@ -31,6 +38,16 @@ const Menu = () => {
       <StatusBanco />
       <div className="menu-container">
         <MenuGrid />
+      </div>
+      
+      <div>
+        <CardCartao
+          cartoes={cartoes}
+          registros={carregarRegistros}
+          carregandoCartoes={carregandoCartoes}
+          excluindoCartao={excluindoCartao}
+          excluirCartao={excluirCartao}
+        />
       </div>
 
       {/* ---Monitoramento--- */}

@@ -2,17 +2,16 @@ import React from 'react'
 import Carregando from '../Components/Carregando';
 import BarraLimite from './BarraLimite';
 import { isoToDate } from '../utils/time';
-import { Trash } from 'lucide-react';
+import { Trash, Wallet } from 'lucide-react';
 import ModalCarregando from './ModalCarregando';
 import { limiteCartao } from '../utils/limiteCartao';
 
 const CardCartao = ({ cartoes, registros, carregandoCartoes, excluindoCartao, excluirCartao }) => {
     return (
         <div className='container'>
-            <h2>Cartões Salvos</h2>
-
             {carregandoCartoes && <Carregando label='carregando...' />}
             {excluindoCartao && <ModalCarregando label='Excluindo' />}
+            <h3><Wallet /> Cartão</h3>
             <div className="cartoes-grid">
                 {cartoes.map((cartao, index) => {
                     const {
@@ -24,6 +23,7 @@ const CardCartao = ({ cartoes, registros, carregandoCartoes, excluindoCartao, ex
                     return (
                         <div key={index} className='card-cartao'>
                             <div className='cartao-data'>
+                                <button className='btn-excluir'><Trash /></button>
                                 <small><strong>Data: </strong>{isoToDate(cartao.data)}</small>
                             </div>
 

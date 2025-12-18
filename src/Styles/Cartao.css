@@ -56,7 +56,7 @@
 }
 
 .cartao-info strong {
-  font-size: 1rem;
+  font-size: 0.7rem;
   color: var(--color-text);
 }
 
@@ -118,5 +118,8 @@
 }
 
 .cartao-data{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
 }
