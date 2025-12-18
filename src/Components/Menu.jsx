@@ -19,7 +19,7 @@ import StatusBanco from './StatusBanco';
 
 const Menu = () => {
   const { carregarRegistros } = useCarregarRegistros();
-  const { monitoramentos, carregarMonitoramentos } = useCarregarMonitoramento();
+  const { monitoramentos, carregarMonitoramentos,carregandoMonitoramento } = useCarregarMonitoramento();
   const { excluindoMonitoramento, excluirMonitoramento } = useExcluirMonitoramento({ carregarMonitoramentos });
 
   const { objetivos, loading, carregarObjetivos } = usecarregarObjetivo();
@@ -47,6 +47,7 @@ const Menu = () => {
 
             return (
               <CardMonitoramento
+                carregandoMonitoramento={carregandoMonitoramento}
                 monitoramento={monitoramento}
                 excluirMonitoramento={excluirMonitoramento}
                 percentualUsado={percentualUsado}

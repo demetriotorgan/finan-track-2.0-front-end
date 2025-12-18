@@ -3,14 +3,18 @@ import api from "../api/api";
 
 export function useCarregarMonitoramento(){
     const [monitoramentos, setMonitoramentos] = useState([]);
+    const [carregandoMonitoramento, setCarregandoMonitoramento] = useState(false);
 
     const carregarMonitoramentos = async () => {
     try {
+      setCarregandoMonitoramento(true);
       const response = await api.get('/listar-monitoramentos');
       console.log(response.data);
       setMonitoramentos(response.data);
     } catch (error) {
       console.log(error);
+    }finally{
+      setCarregandoMonitoramento(false);
     }
   };
 
@@ -20,6 +24,7 @@ export function useCarregarMonitoramento(){
 
     return{
         monitoramentos,
-        carregarMonitoramentos
+        carregarMonitoramentos,
+        carregandoMonitoramento
     }
 }
