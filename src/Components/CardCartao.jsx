@@ -23,6 +23,9 @@ const CardCartao = ({ cartoes, registros, carregandoCartoes, excluindoCartao, ex
 
                     return (
                         <div key={index} className='card-cartao'>
+                            <div className='cartao-data'>
+                                <small><strong>Data: </strong>{isoToDate(cartao.data)}</small>
+                            </div>
 
                             <div className="card-cartao-body">
                                 <div className="cartao-info">

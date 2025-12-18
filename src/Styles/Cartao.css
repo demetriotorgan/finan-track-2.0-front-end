@@ -10,7 +10,7 @@
 .card-cartao {
   background: var(--cor-secundaria);
   border-radius: 16px;
-  padding: 16px;
+  padding: 10px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@
 .card-cartao-body {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  gap: 5px;
   margin-bottom: 12px;
 }
 
@@ -115,4 +115,8 @@
 
 .cartao-percentual.alto strong {
   color: #ff6b6b;
+}
+
+.cartao-data{
+  margin-bottom: 10px;
 }
