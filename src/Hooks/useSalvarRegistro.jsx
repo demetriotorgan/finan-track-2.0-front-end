@@ -2,22 +2,21 @@
 import { useState } from 'react';
 import somMoeda from '../assets/somMoeda.mp3'
 import api from '../api/api';
-import { dateToIso, isoToDateEdit } from '../utils/time';
+import { dateToIso, hojeLocalISO, isoToDateEdit } from '../utils/time';
 
 const audioMoeda = new Audio(somMoeda);
 audioMoeda.preload = 'auto';
 
 
 export function useSalvarRegistro() {
-  const hoje = new Date();
-
+  
   const dadosInicial = {
     descricao:'',
     valor: '',
     tipo: 'credito',
     gasto: 'essencial',
     categoria: 'supermercado',
-    data: hoje.toISOString().slice(0, 10)
+    data: hojeLocalISO()
   }
 
   const [dados, setDados] = useState(dadosInicial);
