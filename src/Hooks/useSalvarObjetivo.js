@@ -1,11 +1,10 @@
 import { useState } from "react";
 import api from "../api/api";
-import { dateToIso, isoToDateEdit } from "../utils/time";
+import { dateToIso, hojeLocalISO, isoToDateEdit } from "../utils/time";
 
 
 export function useSalvarObjetivo({carregarObjetivos}) {
-    const hojeISO = new Date().toISOString();
-
+    
     const objetivoInicial = {
         descricao: '',
         limite: '',
@@ -13,7 +12,7 @@ export function useSalvarObjetivo({carregarObjetivos}) {
         categoria: 'supermercado',
         periodo: '1',
         gasto:'essencial',
-        data: isoToDateEdit(hojeISO)
+        data: hojeLocalISO()
     };
 
     const [dadosObjetivo, setDadosObjetivo] = useState(objetivoInicial);
