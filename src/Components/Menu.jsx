@@ -15,11 +15,12 @@ import { usecarregarObjetivo } from '../Hooks/useCarregarObjetivo';
 import { useExcluirObjetivo } from '../Hooks/useExcluirObjetivo';
 import CardObjetivo from './CardObjetivo';
 import StatusBanco from './StatusBanco';
+import Carregando from './Carregando';
 
 
 const Menu = () => {
-  const { carregarRegistros } = useCarregarRegistros();
-  const { monitoramentos, carregarMonitoramentos,carregandoMonitoramento } = useCarregarMonitoramento();
+  const { carregarRegistros,carregandoRegistros } = useCarregarRegistros();
+  const { monitoramentos, carregarMonitoramentos, carregandoMonitoramento } = useCarregarMonitoramento();
   const { excluindoMonitoramento, excluirMonitoramento } = useExcluirMonitoramento({ carregarMonitoramentos });
 
   const { objetivos, loading, carregarObjetivos } = usecarregarObjetivo();
@@ -35,6 +36,7 @@ const Menu = () => {
       {/* ---Monitoramento--- */}
       <div className='container'>
         <h3><Activity /> Monitoramento</h3>
+        {carregandoMonitoramento && <Carregando />}
         <div className='monitoramento-container'>
           {monitoramentos.length > 0 && (() => {
             const monitoramento = monitoramentos[0];
@@ -54,6 +56,7 @@ const Menu = () => {
                 totalUsado={totalUsado}
                 excedeuLimite={excedeuLimite}
               />
+
             );
           })()}
         </div>
@@ -62,6 +65,7 @@ const Menu = () => {
       {/* ---Objetivos--- */}
       <div className='container'>
         <h3><Flag /> Objetivos Recentes</h3>
+        {loading && <Carregando />}
         <CardObjetivo
           objetivos={(objetivos || []).slice(0, 2)}
           loading={loading}
@@ -71,6 +75,7 @@ const Menu = () => {
 
       {/* ---Card-Recentes--- */}
       <div className='container'>
+        {carregandoRegistros && <Carregando />}
         <UltimosRegistros />
       </div>
     </>

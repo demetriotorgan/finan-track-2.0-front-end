@@ -12,13 +12,12 @@ import { ArrowBigLeft, Trash2 } from 'lucide-react';
 import BarraLimite from './BarraLimite';
 import { mesPorNumero } from '../utils/mesPorNumero'
 
-const CardObjetivo = ({ objetivos, loading, excluirObjetivo }) => {    
+const CardObjetivo = ({ objetivos, excluirObjetivo }) => {    
     const { carregarRegistros } = useCarregarRegistros();
 
     return (
         <>
-            <div className='container'>
-                {loading && <Carregando />}
+            <div className='container'>                
                 {objetivos.map(objetivo => {
                     const {
                         valorGasto,

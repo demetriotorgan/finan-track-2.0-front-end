@@ -5,10 +5,9 @@ import BarraLimite from './BarraLimite'
 import { Trash } from 'lucide-react'
 import Carregando from './Carregando'
 
-const CardMonitoramento = ({ carregandoMonitoramento, monitoramento, excluirMonitoramento, percentualUsado, totalUsado, excedeuLimite }) => {
+const CardMonitoramento = ({ monitoramento, excluirMonitoramento, percentualUsado, totalUsado, excedeuLimite }) => {
   return (
-    <>
-      {carregandoMonitoramento && <Carregando />}
+    <>      
       <div key={monitoramento._id} className="card-monitoramento">
         <h4 className="monitoramento-titulo">
           {monitoramento.descricao}

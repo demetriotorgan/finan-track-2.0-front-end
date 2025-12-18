@@ -8,14 +8,13 @@ import { useExcluirRegistro } from '../Hooks/useExcluirRegistro';
 import CardRegistro from './CardRegistro';
 
 const UltimosRegistros = () => {
-    const { carregarRegistros, loading, carregarUltimosRegistros } = useCarregarRegistros();
+    const { carregarRegistros, carregarUltimosRegistros } = useCarregarRegistros();
     const { excluindo, excluirRegistro } = useExcluirRegistro({ carregarUltimosRegistros });
 
     return (
         <>
             <h3><Pencil />Últimos Lançamentos</h3>
-            {excluindo && <ModalCarregando />}
-            {loading && <Carregando label='Carregando...' />}
+            {excluindo && <ModalCarregando />}            
             <div className='registros-container'>
                 {carregarRegistros.slice(0, 3).map((registro) => (
                     <div key={registro._id} className="registro-card">

@@ -3,18 +3,18 @@ import api from "../api/api";
 
 export function useCarregarRegistros(){
  const [carregarRegistros, setCarregarRegistros] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [carregandoRegistros, setCarregandoRegistros] = useState(false);
 
     const carregarUltimosRegistros = async () => {
         try {
-            setLoading(true);
+            setCarregandoRegistros(true);
             const response = await api.get('/listar-registros');
             // console.log(response.data);
             setCarregarRegistros(response.data);
         } catch (error) {
             console.log(error);
         } finally {
-            setLoading(false);
+            setCarregandoRegistros(false);
         }
     };
 
@@ -24,7 +24,7 @@ export function useCarregarRegistros(){
 
     return{
         carregarRegistros,
-        loading,
+        carregandoRegistros,
         carregarUltimosRegistros
     }
 };
