@@ -19,22 +19,10 @@ const CardCartao = ({ cartoes, registros, carregandoCartoes, excluindoCartao, ex
                         totalUsado,
                         saldoDisponivel,
                         percentualUsado
-                    } = limiteCartao(registros, cartao.limite);
+                    } = limiteCartao(registros, cartao);
 
                     return (
                         <div key={index} className='card-cartao'>
-
-                            <div className="card-cartao-header">
-                                <h3>
-                                    <button
-                                        className='btn-excluir'
-                                        onClick={() => excluirCartao(cartao._id)}
-                                    >
-                                        <Trash />
-                                    </button>
-                                    {cartao.descricao}
-                                </h3>
-                            </div>
 
                             <div className="card-cartao-body">
                                 <div className="cartao-info">
@@ -44,28 +32,38 @@ const CardCartao = ({ cartoes, registros, carregandoCartoes, excluindoCartao, ex
 
                                 <div className="cartao-info">
                                     <span>Total Usado</span>
-                                    <strong>R$ {totalUsado}</strong>
+                                    <strong>R$ {totalUsado.toFixed(2)}</strong>
                                 </div>
 
                                 <div className="cartao-info">
                                     <span>Disponível</span>
-                                    <strong>R$ {saldoDisponivel}</strong>
+                                    <strong>R$ {saldoDisponivel.toFixed(2)}</strong>
                                 </div>
                             </div>
-                             <div className="cartao-percentual">
-                                    <span>Usado:</span>
-                                    <strong>{percentualUsado.toFixed(2)}%</strong>
-                                </div>
+                            <div className="cartao-info">
+                                <span>Valor Inicial</span>
+                                <strong>R$ {cartao.valorInicial}</strong>
+                            </div>
+                            <div
+                                className={`cartao-percentual ${percentualUsado >= 100
+                                    ? 'alto'
+                                    : percentualUsado >= 70
+                                        ? 'medio'
+                                        : 'baixo'
+                                    }`}
+                            >
+                                <span>Usado:</span>
+                                <strong>{percentualUsado.toFixed(2)}%</strong>
+                            </div>
+
                             <div className="card-cartao-barra">
                                 <BarraLimite percentualUsado={percentualUsado} />
                             </div>
 
-                            <div className="card-cartao-footer">
-                                <span>{isoToDate(cartao.data)}</span>
-                            </div>
                         </div>
                     );
                 })}
+
             </div>
         </div>
 

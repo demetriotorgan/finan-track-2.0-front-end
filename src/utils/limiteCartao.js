@@ -1,29 +1,57 @@
 // utils/limiteCartao.js
+export function limiteCartao(registros = [], cartao = {}) {
+  //  console.log('🔴 CARTÃO NA FUNÇÃO:', cartao);
 
-export function limiteCartao(registros = [], limite = 0) {
-  if (!Array.isArray(registros) || !limite) {
+  const limite = Number(cartao.limite) || 0;
+  const valorInicial = Number(cartao.valorInicial) || 0;
+  //  console.log('🟠 VALORES NORMALIZADOS:', {
+  //   limite,
+  //   valorInicial
+  // });
+  const dataCartao = cartao.data;
+
+  if (!Array.isArray(registros) || !limite || !dataCartao) {
     return {
-      totalUsado: 0,
-      saldoDisponivel: limite,
-      percentualUsado: 0
+      totalUsado: valorInicial,
+      saldoDisponivel: limite - valorInicial,
+      percentualUsado: limite > 0 ? (valorInicial / limite) * 100 : 0,
+      percentualDisponivel: 100
     };
   }
 
-  // 1. Filtra apenas créditos
-  const totalUsado = registros
-    .filter(r => r.tipo === 'credito')
+  const dataInicialCartao = new Date(dataCartao);
+
+  // 1. Soma créditos após a data do cartão
+  const totalCreditosAposCartao = registros
+    .filter(r =>
+      r.tipo === 'credito' &&
+      new Date(r.data) >= dataInicialCartao
+    )
     .reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
+  
+    // console.log('🧮 TOTAL CRÉDITOS APÓS CARTÃO:', totalCreditosAposCartao);
+  // 2. Total usado REAL
+  const totalUsado = valorInicial + totalCreditosAposCartao;
 
-  // 2. Calcula saldo disponível
-  const saldoDisponivel = Math.max(limite - totalUsado, 0);
+//   console.log('🟢 TOTAL USADO FINAL:', {
+//   valorInicial,
+//   totalCreditosAposCartao,
+//   totalUsado
+// });
+  // 3. Saldo disponível (pode ser negativo)
+  const saldoDisponivel = limite - totalUsado;
 
-  // 3. Percentual usado
-  const percentualUsado =
-    limite > 0 ? Math.min((totalUsado / limite) * 100, 100) : 0;
+  // 4. Percentual usado (PODE passar de 100%)
+  const percentualUsado = limite > 0
+    ? (totalUsado / limite) * 100
+    : 0;
+
+  const percentualDisponivel = 100 - percentualUsado;
 
   return {
     totalUsado,
     saldoDisponivel,
-    percentualUsado
+    percentualUsado,
+    percentualDisponivel
   };
 }

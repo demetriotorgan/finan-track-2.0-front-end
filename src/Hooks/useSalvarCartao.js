@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { dateToIso } from "../utils/time";
+import { dateToIso, hojeLocalISO } from "../utils/time";
 import api from "../api/api";
 
-export function useSalvarCartao({carregarCartoes}) {
-    const hoje = new Date();
+export function useSalvarCartao({carregarCartoes}) {    
 
     const cartaoInicial = {
         descricao: '',
         limite: '',
         valorInicial: '',
-        data: hoje.toISOString().slice(0, 10)
+        data: hojeLocalISO()
     }
     const [cartao, setCartao] = useState(cartaoInicial);
     const [salvandoCartao, setSalvandoCartao] = useState(false);

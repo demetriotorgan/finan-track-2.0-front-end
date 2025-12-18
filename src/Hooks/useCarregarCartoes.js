@@ -24,7 +24,8 @@ export function useCarregarCartoes() {
 
 
     return {
-        cartoes,        
+        cartoes,
+        carregandoCartoes,        
         carregarCartoes
     }
 }

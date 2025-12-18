@@ -100,3 +100,19 @@
   font-weight: 600;
   color: var(--cor-terciaria);
 }
+
+.cartao-percentual.baixo {
+  border-left-color: #4caf50;
+}
+
+.cartao-percentual.medio {
+  border-left-color: #ffb300;
+}
+
+.cartao-percentual.alto {
+  border-left-color: #e53935;
+}
+
+.cartao-percentual.alto strong {
+  color: #ff6b6b;
+}
