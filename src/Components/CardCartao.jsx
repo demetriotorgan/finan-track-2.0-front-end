@@ -23,7 +23,7 @@ const CardCartao = ({ cartoes, registros, carregandoCartoes, excluindoCartao, ex
                     return (
                         <div key={index} className='card-cartao'>
                             <div className='cartao-data'>
-                                <button className='btn-excluir'><Trash /></button>
+                                <button className='btn-excluir' onClick={()=>excluirCartao(cartao._id)}><Trash /></button>
                                 <small><strong>Data: </strong>{isoToDate(cartao.data)}</small>
                             </div>
 
