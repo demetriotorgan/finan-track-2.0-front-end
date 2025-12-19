@@ -98,7 +98,7 @@ const Menu = () => {
         <h3><Flag /> Objetivos Recentes</h3>
         {loading && <Carregando />}
         <CardObjetivo
-          objetivos={(objetivos || []).slice(0, 2)}
+          objetivos={(objetivos || []).slice(0, 3)}
           loading={loading}
           excluirObjetivo={excluirObjetivo}
         />
