@@ -8,7 +8,8 @@ export function useSalvarCartao({carregarCartoes}) {
         descricao: '',
         limite: '',
         valorInicial: '',
-        data: hojeLocalISO()
+        data: hojeLocalISO(),
+        dataLimite: hojeLocalISO()
     }
     const [cartao, setCartao] = useState(cartaoInicial);
     const [salvandoCartao, setSalvandoCartao] = useState(false);
@@ -26,7 +27,8 @@ export function useSalvarCartao({carregarCartoes}) {
             descricao: cartao.descricao,
             limite: cartao.limite,
             valorInicial: cartao.valorInicial,
-            data: dateToIso(cartao.data)
+            data: dateToIso(cartao.data),
+            dataLimite: dateToIso(cartao.dataLimite)
         }
 
         try {

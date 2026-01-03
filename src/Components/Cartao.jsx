@@ -54,10 +54,20 @@ const Cartao = () => {
                     />
                 </label>
                 <label>
+                    Data Inicial
                     <input
                         type='date'
                         name='data'
                         value={cartao.data}
+                        onChange={handleCartao}
+                    />
+                </label>
+                <label>
+                    Data Limite
+                    <input 
+                        type='date'
+                        name='dataLimite'
+                        value={cartao.dataLimite}
                         onChange={handleCartao}
                     />
                 </label>

@@ -62,7 +62,9 @@ const CardCartao = ({ cartoes, registros, carregandoCartoes, excluindoCartao, ex
                             <div className="card-cartao-barra">
                                 <BarraLimite percentualUsado={percentualUsado} />
                             </div>
-
+                        <label>
+                            <p>Data Limite: {isoToDate(cartao.dataLimite)}</p>
+                        </label>
                         </div>
                     );
                 })}

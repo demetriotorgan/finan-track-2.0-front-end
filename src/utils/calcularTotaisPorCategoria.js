@@ -6,7 +6,7 @@ export function calcularTotaisPorCategoria(
 
   let registrosFiltrados = registros;
 
-  // 🔹 aplica filtro por mês/ano se informado
+  // 🔹 aplica filtro por mês/ano usando UTC
   if (filtroMesAno) {
     const { mes, ano } = filtroMesAno;
 
@@ -14,9 +14,10 @@ export function calcularTotaisPorCategoria(
       if (!r.data) return false;
 
       const data = new Date(r.data);
+
       return (
-        data.getMonth() + 1 === mes &&
-        data.getFullYear() === ano
+        data.getUTCMonth() + 1 === mes &&
+        data.getUTCFullYear() === ano
       );
     });
   }
@@ -29,7 +30,10 @@ export function calcularTotaisPorCategoria(
     const { categoria, gasto, valor } = registro;
 
     if (!acc[categoria]) {
-      acc[categoria] = { essencial: 0, 'nao-essencial': 0 };
+      acc[categoria] = {
+        essencial: 0,
+        'nao-essencial': 0
+      };
     }
 
     if (gasto === 'essencial' || gasto === 'nao-essencial') {
@@ -43,7 +47,7 @@ export function calcularTotaisPorCategoria(
     ([categoria, valores]) => ({
       categoria,
       essencial: valores.essencial,
-      naoEssencial: valores['nao-essencial'],
+      naoEssencial: valores['nao-essencial']
     })
   );
 }

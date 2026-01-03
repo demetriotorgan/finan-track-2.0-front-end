@@ -1,16 +1,18 @@
 // utils/limiteCartao.js
 export function limiteCartao(registros = [], cartao = {}) {
-  //  console.log('🔴 CARTÃO NA FUNÇÃO:', cartao);
 
   const limite = Number(cartao.limite) || 0;
   const valorInicial = Number(cartao.valorInicial) || 0;
-  //  console.log('🟠 VALORES NORMALIZADOS:', {
-  //   limite,
-  //   valorInicial
-  // });
-  const dataCartao = cartao.data;
 
-  if (!Array.isArray(registros) || !limite || !dataCartao) {
+  const dataInicial = cartao.data;
+  const dataFinal = cartao.dataLimite;
+
+  if (
+    !Array.isArray(registros) ||
+    !limite ||
+    !dataInicial ||
+    !dataFinal
+  ) {
     return {
       totalUsado: valorInicial,
       saldoDisponivel: limite - valorInicial,
@@ -19,29 +21,26 @@ export function limiteCartao(registros = [], cartao = {}) {
     };
   }
 
-  const dataInicialCartao = new Date(dataCartao);
+  // 🔹 normaliza tudo para UTC
+  const inicioUTC = new Date(dataInicial);
+  const fimUTC = new Date(dataFinal);
 
-  // 1. Soma créditos após a data do cartão
-  const totalCreditosAposCartao = registros
-    .filter(r =>
-      r.tipo === 'credito' &&
-      new Date(r.data) >= dataInicialCartao
-    )
+  const totalCreditosNoPeriodo = registros
+    .filter(r => {
+      if (r.tipo !== 'credito' || !r.data) return false;
+
+      const dataRegistro = new Date(r.data);
+
+      return (
+        dataRegistro.getTime() >= inicioUTC.getTime() &&
+        dataRegistro.getTime() <= fimUTC.getTime()
+      );
+    })
     .reduce((acc, r) => acc + (Number(r.valor) || 0), 0);
-  
-    // console.log('🧮 TOTAL CRÉDITOS APÓS CARTÃO:', totalCreditosAposCartao);
-  // 2. Total usado REAL
-  const totalUsado = valorInicial + totalCreditosAposCartao;
 
-//   console.log('🟢 TOTAL USADO FINAL:', {
-//   valorInicial,
-//   totalCreditosAposCartao,
-//   totalUsado
-// });
-  // 3. Saldo disponível (pode ser negativo)
+  const totalUsado = valorInicial + totalCreditosNoPeriodo;
   const saldoDisponivel = limite - totalUsado;
 
-  // 4. Percentual usado (PODE passar de 100%)
   const percentualUsado = limite > 0
     ? (totalUsado / limite) * 100
     : 0;
