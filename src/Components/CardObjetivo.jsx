@@ -37,6 +37,7 @@ const CardObjetivo = ({ objetivos, excluirObjetivo }) => {
                                 </button>
                                 {objetivo.descricao}
                             </h3>
+                            <small>Data Início: {isoToDate(objetivo.data)}</small>
 
                             {/* Grupo 1 */}
                             <div className="grupo-info">
@@ -81,7 +82,9 @@ const CardObjetivo = ({ objetivos, excluirObjetivo }) => {
                             </div>
 
                             <BarraLimite percentualUsado={percentualUsado} />
-
+                            <label>
+                                <small>Data Final: {isoToDate(objetivo.dataLimite)}</small>
+                            </label>
                             {excedeuLimite && (
                                 <span className="alerta-limite">⚠ Limite excedido</span>
                             )}

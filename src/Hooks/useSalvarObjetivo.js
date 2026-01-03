@@ -12,7 +12,8 @@ export function useSalvarObjetivo({carregarObjetivos}) {
         categoria: 'supermercado',
         periodo: '1',
         gasto:'essencial',
-        data: hojeLocalISO()
+        data: hojeLocalISO(),
+        dataLimite: hojeLocalISO()
     };
 
     const [dadosObjetivo, setDadosObjetivo] = useState(objetivoInicial);
@@ -31,7 +32,8 @@ export function useSalvarObjetivo({carregarObjetivos}) {
             categoria: dadosObjetivo.categoria,
             periodo: dadosObjetivo.periodo,
             gasto: dadosObjetivo.gasto,
-            data: dateToIso(dadosObjetivo.data)
+            data: dateToIso(dadosObjetivo.data),
+            dataLimite: dateToIso(dadosObjetivo.dataLimite)
         }
 
         const confirmar = window.confirm('Deseja salvar este objetivo?');

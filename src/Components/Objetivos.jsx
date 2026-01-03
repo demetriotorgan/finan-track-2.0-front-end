@@ -88,11 +88,20 @@ const Objetivos = () => {
             </select>
           </label>
           <label>
-            Data
+            Data Inicial
             <input
               type='date'
               name='data'
               value={dadosObjetivo.data}
+              onChange={handleDados}
+            />
+          </label>
+          <label>
+            Data Final
+            <input 
+              type='date'
+              name='dataLimite'
+              value={dadosObjetivo.dataLimite}
               onChange={handleDados}
             />
           </label>

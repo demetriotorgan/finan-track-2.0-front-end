@@ -60,7 +60,9 @@ const CardMonitoramento = ({ monitoramento, excluirMonitoramento, percentualUsad
         {excedeuLimite && (
           <span className="alerta-limite">⚠ Limite excedido</span>
         )}
-
+        <label>
+          Data Limite: {isoToDate(monitoramento.dataLimite)}
+        </label>
       </div>
     </>
   )

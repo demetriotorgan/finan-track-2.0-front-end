@@ -13,23 +13,43 @@ export function calcularLimite(objetivo, registros = []) {
   const limite = Number(objetivo.limite) || 0;
   const categoriaObjetivo = objetivo.categoria;
   const gastoObjetivo = objetivo.gasto;
-  const tipoObjetivo = objetivo.tipo; // 🔹 NOVO
-  const periodoObjetivo = Number(objetivo.periodo); // 1–12
+  const tipoObjetivo = objetivo.tipo;
+
+  const dataInicial = objetivo.data;
+  const dataFinal = objetivo.dataLimite;
+
+  if (!dataInicial || !dataFinal) {
+    return {
+      valorGasto: 0,
+      limite,
+      saldoRestante: limite,
+      percentualUsado: 0,
+      percentualRestante: 100,
+      excedeuLimite: false
+    };
+  }
+
+  // 🔹 normalização UTC
+  const inicioUTC = new Date(dataInicial);
+  const fimUTC = new Date(dataFinal);
 
   const valorGasto = registros
     .filter(registro => {
       if (!registro.data) return false;
 
-      const mesRegistro = new Date(registro.data).getMonth() + 1;
+      const dataRegistro = new Date(registro.data);
 
       return (
         registro.categoria === categoriaObjetivo &&
         registro.gasto === gastoObjetivo &&
-        registro.tipo === tipoObjetivo && // 🔹 NOVO FILTRO
-        mesRegistro === periodoObjetivo
+        registro.tipo === tipoObjetivo &&
+        dataRegistro.getTime() >= inicioUTC.getTime() &&
+        dataRegistro.getTime() <= fimUTC.getTime()
       );
     })
-    .reduce((total, registro) => total + Number(registro.valor || 0), 0);
+    .reduce((total, registro) => {
+      return total + (Number(registro.valor) || 0);
+    }, 0);
 
   const saldoRestante = limite - valorGasto;
 
