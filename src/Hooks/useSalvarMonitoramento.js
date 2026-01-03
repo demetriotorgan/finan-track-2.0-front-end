@@ -10,7 +10,8 @@ export function useSalvarMonitoramento({carregarMonitoramentos}) {
         tipo: 'credito',
         limite: '',
         periodo: '1',
-        data: isoToDateEdit(hojeISO)
+        data: isoToDateEdit(hojeISO),
+        dataLimite: isoToDateEdit(hojeISO)
     }
     const [dadosMonitoramento, setDadosMonitoramento] = useState(monitoramentoInicial);
     const [salvandoMonitoramento, setSalvandoMonitoramento] = useState(false);
@@ -29,7 +30,8 @@ export function useSalvarMonitoramento({carregarMonitoramentos}) {
             tipo: dadosMonitoramento.tipo,
             limite: dadosMonitoramento.limite,
             periodo: dadosMonitoramento.periodo,
-            data: dateToIso(dadosMonitoramento.data)
+            data: dateToIso(dadosMonitoramento.data),
+            dataLimite: dateToIso(dadosMonitoramento.dataLimite)
         }
 
         try {

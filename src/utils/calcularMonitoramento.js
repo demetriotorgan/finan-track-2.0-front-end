@@ -10,20 +10,38 @@ export function calcularMonitoramento(monitoramento, registros = []) {
 
   const limite = Number(monitoramento.limite) || 0;
   const tipoMonitoramento = monitoramento.tipo;
-  const periodoMonitoramento = Number(monitoramento.periodo); // 1–12
+
+  const dataInicial = monitoramento.data;
+  const dataFinal = monitoramento.dataLimite;
+
+  if (!dataInicial || !dataFinal) {
+    return {
+      totalUsado: 0,
+      limite,
+      percentualUsado: 0,
+      excedeuLimite: false
+    };
+  }
+
+  // 🔹 normalização UTC
+  const inicioUTC = new Date(dataInicial);
+  const fimUTC = new Date(dataFinal);
 
   const totalUsado = registros
     .filter(registro => {
       if (!registro.data) return false;
+      if (registro.tipo !== tipoMonitoramento) return false;
 
-      const mesRegistro = new Date(registro.data).getMonth() + 1;
+      const dataRegistro = new Date(registro.data);
 
       return (
-        registro.tipo === tipoMonitoramento &&
-        mesRegistro === periodoMonitoramento
+        dataRegistro.getTime() >= inicioUTC.getTime() &&
+        dataRegistro.getTime() <= fimUTC.getTime()
       );
     })
-    .reduce((total, registro) => total + Number(registro.valor || 0), 0);
+    .reduce((total, registro) => {
+      return total + (Number(registro.valor) || 0);
+    }, 0);
 
   const percentualUsado = limite > 0
     ? (totalUsado / limite) * 100

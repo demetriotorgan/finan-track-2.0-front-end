@@ -137,8 +137,22 @@ const ResumoGeral = () => {
           </label>
 
           <label>
-            Data
-            <input type="date" name="data" value={dadosMonitoramento.data} onChange={handleMonitoramento} />
+            Data Inicial
+            <input 
+              type="date" 
+              name="data" 
+              value={dadosMonitoramento.data} 
+              onChange={handleMonitoramento} 
+              />
+          </label>
+          <label>
+            Data Final
+              <input 
+              type='date'
+              name='dataLimite'
+              value={dadosMonitoramento.dataLimite}
+              onChange={handleMonitoramento}
+              />
           </label>
 
           <button className="btn btn-salvar" onClick={salvarMonitoramento}>Salvar</button>
