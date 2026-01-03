@@ -56,7 +56,7 @@ const Menu = () => {
       
       <div>
         <CardCartao
-          cartoes={cartoes}
+          cartoes={(cartoes || []).slice(0, 1)}
           registros={carregarRegistros}
           carregandoCartoes={carregandoCartoes}
           excluindoCartao={excluindoCartao}
